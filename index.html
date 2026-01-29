@@ -102,6 +102,25 @@
     }
 
     .no-scroll { overflow: hidden; }
+
+    /* ✅ OUR APPROACH: hover on desktop + "active" on mobile scroll */
+    .approach-card{
+      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+      border-color: #E5E7EB; /* line */
+      will-change: transform;
+    }
+    @media (hover:hover) and (pointer:fine){
+      .approach-card:hover{
+        transform: scale(1.02);
+        border-color: #0B1220; /* ink */
+        box-shadow: 0 12px 24px rgba(2, 6, 23, 0.12);
+      }
+    }
+    .approach-card.is-active{
+      transform: scale(1.02);
+      border-color: #0B1220; /* ink */
+      box-shadow: 0 12px 24px rgba(2, 6, 23, 0.12);
+    }
   </style>
 
   <script>
@@ -344,8 +363,9 @@
             </p>
           </div>
 
+          <!-- ✅ Added approach-card class to each pillar -->
           <div class="grid gap-4">
-            <div class="sq border border-line bg-white p-6 reveal">
+            <div class="sq border border-line bg-white p-6 reveal approach-card">
               <div class="flex items-center justify-between gap-4">
                 <h3 class="text-lg font-semibold tracking-tight">Maximising value</h3>
                 <i data-feather="trending-up" class="w-5 h-5"></i>
@@ -353,7 +373,7 @@
               <p class="mt-2 text-sm text-muted">Identify and implement opportunities that enhance long-term performance.</p>
             </div>
 
-            <div class="sq border border-line bg-white p-6 reveal">
+            <div class="sq border border-line bg-white p-6 reveal approach-card">
               <div class="flex items-center justify-between gap-4">
                 <h3 class="text-lg font-semibold tracking-tight">Reducing costs</h3>
                 <i data-feather="shield" class="w-5 h-5"></i>
@@ -361,7 +381,7 @@
               <p class="mt-2 text-sm text-muted">Structured negotiation and timing to protect budgets and reduce exposure.</p>
             </div>
 
-            <div class="sq border border-line bg-white p-6 reveal">
+            <div class="sq border border-line bg-white p-6 reveal approach-card">
               <div class="flex items-center justify-between gap-4">
                 <h3 class="text-lg font-semibold tracking-tight">Increasing returns</h3>
                 <i data-feather="bar-chart-2" class="w-5 h-5"></i>
@@ -603,76 +623,64 @@
       </div>
     </section>
 
-<!-- ✅ Replace ONLY your <footer>...</footer> with this version (black background + white logo) -->
+    <!-- FOOTER (black + white logo) -->
+    <footer class="bg-black text-white">
+      <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-20 py-14">
+        <div class="grid md:grid-cols-4 gap-10 reveal">
+          <div>
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/601fd0787b0ff91513ebe340/a4fbaec7-8c0d-427b-9f85-bc15ee43844e/Monochrome+on+Transparent.png?format=1500w"
+              alt="T1 Asset Management"
+              class="h-10 w-auto"
+              loading="lazy"
+            />
+            <p class="mt-4 text-sm text-white/70 leading-relaxed max-w-sm">
+              Independent commercial property advice across Yorkshire and the UK.
+            </p>
+          </div>
 
-<footer class="bg-black text-white">
-  <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-20 py-14">
-    <div class="grid md:grid-cols-4 gap-10 reveal">
-      <!-- Brand -->
-      <div>
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/601fd0787b0ff91513ebe340/a4fbaec7-8c0d-427b-9f85-bc15ee43844e/Monochrome+on+Transparent.png?format=1500w"
-          alt="T1 Asset Management"
-          class="h-10 w-auto"
-          loading="lazy"
-        />
-        <p class="mt-4 text-sm text-white/70 leading-relaxed max-w-sm">
-          Independent commercial property advice across Yorkshire and the UK.
-        </p>
-      </div>
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Services</p>
+            <ul class="mt-4 space-y-2 text-sm">
+              <li><a class="text-white/80 hover:text-white transition" href="#services">Lease Renewals</a></li>
+              <li><a class="text-white/80 hover:text-white transition" href="#services">Rent Reviews (Tenants)</a></li>
+              <li><a class="text-white/80 hover:text-white transition" href="#services">Rent Reviews (Landlords)</a></li>
+              <li><a class="text-white/80 hover:text-white transition" href="#services">Section 18 Valuations</a></li>
+              <li><a class="text-white/80 hover:text-white transition" href="#services">Break Clause Issues</a></li>
+              <li><a class="text-white/80 hover:text-white transition" href="#services">Expert Witness</a></li>
+            </ul>
+          </div>
 
-      <!-- Services -->
-      <div>
-        <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Services</p>
-        <ul class="mt-4 space-y-2 text-sm">
-          <li><a class="text-white/80 hover:text-white transition" href="#services">Lease Renewals</a></li>
-          <li><a class="text-white/80 hover:text-white transition" href="#services">Rent Reviews (Tenants)</a></li>
-          <li><a class="text-white/80 hover:text-white transition" href="#services">Rent Reviews (Landlords)</a></li>
-          <li><a class="text-white/80 hover:text-white transition" href="#services">Section 18 Valuations</a></li>
-          <li><a class="text-white/80 hover:text-white transition" href="#services">Break Clause Issues</a></li>
-          <li><a class="text-white/80 hover:text-white transition" href="#services">Expert Witness</a></li>
-        </ul>
-      </div>
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Company</p>
+            <ul class="mt-4 space-y-2 text-sm">
+              <li><a class="text-white/80 hover:text-white transition" href="#about">About</a></li>
+              <li><a class="text-white/80 hover:text-white transition" href="#approach">Our Approach</a></li>
+              <li><a class="text-white/80 hover:text-white transition" href="#contact">Contact</a></li>
+              <li><button data-open-callback class="text-left text-white/80 hover:text-white transition">Request a call back</button></li>
+            </ul>
+          </div>
 
-      <!-- Company -->
-      <div>
-        <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Company</p>
-        <ul class="mt-4 space-y-2 text-sm">
-          <li><a class="text-white/80 hover:text-white transition" href="#about">About</a></li>
-          <li><a class="text-white/80 hover:text-white transition" href="#approach">Our Approach</a></li>
-          <li><a class="text-white/80 hover:text-white transition" href="#contact">Contact</a></li>
-          <li>
-            <button data-open-callback class="text-left text-white/80 hover:text-white transition">
-              Request a call back
-            </button>
-          </li>
-        </ul>
-      </div>
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Contact</p>
+            <div class="mt-4 space-y-3 text-sm text-white/70">
+              <p class="text-white/85"><span class="text-white/60">Phone:</span> 0791 2222 905</p>
+              <p class="text-white/85"><span class="text-white/60">Email:</span> rob@t1assetmanagement.co.uk</p>
+              <p>Unit 19 Holly Park Mills, Calverley, Leeds LS28 5QS</p>
+            </div>
+          </div>
+        </div>
 
-      <!-- Contact -->
-      <div>
-        <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Contact</p>
-        <div class="mt-4 space-y-3 text-sm text-white/70">
-          <p class="text-white/85"><span class="text-white/60">Phone:</span> 0791 2222 905</p>
-          <p class="text-white/85"><span class="text-white/60">Email:</span> rob@t1assetmanagement.co.uk</p>
-          <p>Unit 19 Holly Park Mills, Calverley, Leeds LS28 5QS</p>
+        <div class="mt-12 pt-8 border-t border-white/15 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between reveal">
+          <p class="text-sm text-white/60">© <span id="year"></span> T1 Asset Management. All rights reserved.</p>
+          <div class="flex gap-6 text-sm">
+            <a href="#" class="text-white/60 hover:text-white transition">Privacy</a>
+            <a href="#" class="text-white/60 hover:text-white transition">Terms</a>
+            <a href="#" class="text-white/60 hover:text-white transition">Cookies</a>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="mt-12 pt-8 border-t border-white/15 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between reveal">
-      <p class="text-sm text-white/60">
-        © <span id="year"></span> T1 Asset Management. All rights reserved.
-      </p>
-      <div class="flex gap-6 text-sm">
-        <a href="#" class="text-white/60 hover:text-white transition">Privacy</a>
-        <a href="#" class="text-white/60 hover:text-white transition">Terms</a>
-        <a href="#" class="text-white/60 hover:text-white transition">Cookies</a>
-      </div>
-    </div>
-  </div>
-</footer>
-
+    </footer>
 
   </main>
 
@@ -808,7 +816,7 @@
     window.addEventListener("resize", updateDisabled);
     updateDisabled();
 
-    // Fade-in on scroll
+    // Fade-in on scroll (one-time)
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
@@ -819,6 +827,19 @@
     }, { threshold: 0.12, rootMargin: "0px 0px -10% 0px" });
 
     document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    // ✅ Our Approach "active" on mobile scroll (adds black outline + scale when in view)
+    const approachCards = document.querySelectorAll(".approach-card");
+    const approachIO = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) entry.target.classList.add("is-active");
+        else entry.target.classList.remove("is-active");
+      });
+    }, {
+      threshold: 0.6,
+      rootMargin: "0px 0px -20% 0px"
+    });
+    approachCards.forEach((el) => approachIO.observe(el));
   </script>
 </body>
 </html>
