@@ -121,78 +121,110 @@
 
   <main>
 
-    <!-- HERO -->
-    <section class="relative overflow-hidden">
-      <div class="relative hero-overlay">
-        <img
-          src="https://images.squarespace-cdn.com/content/v1/601fd0787b0ff91513ebe340/1740835506656-1H4NUYBEC6M7QTAM1TKA/unsplash-image-muqrIzbDut0.jpg?format=2500w"
-          alt="Modern commercial property"
-          class="w-full h-[70vh] min-h-[540px] object-cover"
-          loading="eager"
-        />
+<!-- ✅ Replace ONLY your HERO <section> with this version.
+It keeps your design, but makes mobile spacing/typography much more minimal/pro. -->
 
-        <div class="absolute inset-0">
-          <div class="max-w-7xl mx-auto h-full px-4 md:px-10 lg:px-20">
-            <div class="h-full flex items-center">
-              <div class="max-w-2xl">
-                <p class="text-[11px] uppercase tracking-[0.28em] text-white/70 mb-4">
-                  Leeds-based • UK-wide
-                </p>
+<section class="relative overflow-hidden">
+  <div class="relative hero-overlay">
+    <img
+      src="https://images.squarespace-cdn.com/content/v1/601fd0787b0ff91513ebe340/1740835506656-1H4NUYBEC6M7QTAM1TKA/unsplash-image-muqrIzbDut0.jpg?format=2500w"
+      alt="Modern commercial property"
+      class="w-full h-[62vh] min-h-[520px] md:h-[70vh] object-cover"
+      loading="eager"
+    />
 
-                <h1 class="text-white text-4xl md:text-6xl font-semibold tracking-tight leading-[1.05]">
-                  Maximise value. Reduce cost. Improve returns.
-                </h1>
+    <!-- Content layer -->
+    <div class="absolute inset-0">
+      <div class="max-w-7xl mx-auto h-full px-4 md:px-10 lg:px-20">
+        <!-- ✅ Mobile: start a little higher, with breathing room -->
+        <div class="h-full flex items-center">
+          <div class="w-full max-w-2xl pt-6 sm:pt-0">
+            <!-- Eyebrow -->
+            <p class="text-[10px] sm:text-[11px] uppercase tracking-[0.26em] text-white/70 mb-3 sm:mb-4">
+              Leeds-based • UK-wide
+            </p>
 
-                <p class="mt-6 text-white/80 text-lg md:text-xl leading-relaxed">
-                  Specialist commercial property advice across lease events, rent reviews and portfolio strategy —
-                  delivered with clarity and discretion.
-                </p>
+            <!-- ✅ Much more controlled headline on mobile -->
+            <h1 class="text-white font-semibold tracking-tight leading-[1.08]
+                       text-[30px] sm:text-4xl md:text-6xl">
+              Maximise value. Reduce cost. Improve returns.
+            </h1>
 
-                <div class="mt-8 flex flex-col sm:flex-row gap-3">
-                  <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 sq bg-white text-ink font-semibold hover:bg-gray-100 transition">
-                    Speak to a surveyor <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
-                  </a>
-                  <a href="#services" class="inline-flex items-center justify-center px-6 py-3 sq border border-white/35 text-white font-semibold hover:bg-white/10 transition">
-                    View services
-                  </a>
-                </div>
+            <!-- ✅ Smaller body text + tighter spacing on mobile -->
+            <p class="mt-4 sm:mt-6 text-white/80 leading-relaxed
+                      text-[14px] sm:text-lg md:text-xl">
+              Specialist commercial property advice across lease events, rent reviews and portfolio strategy —
+              delivered with clarity and discretion.
+            </p>
 
-                <div class="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-white/75 text-sm">
-                  <span class="inline-flex items-center gap-2"><i data-feather="check" class="w-4 h-4"></i>Lease events & negotiations</span>
-                  <span class="inline-flex items-center gap-2"><i data-feather="check" class="w-4 h-4"></i>Independent advice</span>
-                  <span class="inline-flex items-center gap-2"><i data-feather="check" class="w-4 h-4"></i>Time-critical support</span>
-                </div>
-              </div>
+            <!-- ✅ Buttons: stack on mobile with consistent height -->
+            <div class="mt-6 sm:mt-8 flex flex-col sm:flex-row gap-3">
+              <a
+                href="#contact"
+                class="inline-flex items-center justify-center px-6 py-3 sq bg-white text-ink
+                       text-sm font-semibold hover:bg-gray-100 transition"
+              >
+                Speak to a surveyor <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+              </a>
+
+              <a
+                href="#services"
+                class="inline-flex items-center justify-center px-6 py-3 sq border border-white/35 text-white
+                       text-sm font-semibold hover:bg-white/10 transition"
+              >
+                View services
+              </a>
             </div>
+
+            <!-- ✅ Reduce visual noise on mobile: hide bullets until sm -->
+            <div class="hidden sm:flex mt-8 flex-wrap gap-x-8 gap-y-3 text-white/75 text-sm">
+              <span class="inline-flex items-center gap-2">
+                <i data-feather="check" class="w-4 h-4"></i>Lease events & negotiations
+              </span>
+              <span class="inline-flex items-center gap-2">
+                <i data-feather="check" class="w-4 h-4"></i>Independent advice
+              </span>
+              <span class="inline-flex items-center gap-2">
+                <i data-feather="check" class="w-4 h-4"></i>Time-critical support
+              </span>
+            </div>
+
+            <!-- ✅ Optional: a single, minimal line for mobile instead -->
+            <p class="sm:hidden mt-6 text-white/70 text-[12px] tracking-wide">
+              Lease events • Rent reviews • Portfolio strategy
+            </p>
           </div>
         </div>
       </div>
+    </div>
+  </div>
 
-      <!-- Minimal overlapping tiles -->
-      <div class="-mt-10 relative z-10">
-        <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-20">
-          <div class="grid md:grid-cols-3 gap-4">
-            <div class="sq bg-white border border-line shadow-soft p-6">
-              <p class="text-[11px] uppercase tracking-[0.25em] text-muted">Focus</p>
-              <h3 class="mt-2 text-lg font-semibold">Commercial lease events</h3>
-              <p class="mt-2 text-sm text-muted">Rent reviews, renewals, breaks and dispute support.</p>
-            </div>
+  <!-- ✅ Overlap tiles: reduce overlap on mobile so it doesn’t feel cramped -->
+  <div class="-mt-6 sm:-mt-10 relative z-10">
+    <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-20">
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="sq bg-white border border-line shadow-soft p-6">
+          <p class="text-[11px] uppercase tracking-[0.25em] text-muted">Focus</p>
+          <h3 class="mt-2 text-lg font-semibold">Commercial lease events</h3>
+          <p class="mt-2 text-sm text-muted">Rent reviews, renewals, breaks and dispute support.</p>
+        </div>
 
-            <div class="sq bg-white border border-line shadow-soft p-6">
-              <p class="text-[11px] uppercase tracking-[0.25em] text-muted">Approach</p>
-              <h3 class="mt-2 text-lg font-semibold">Evidence-led negotiation</h3>
-              <p class="mt-2 text-sm text-muted">Clear strategy, robust comparables, disciplined execution.</p>
-            </div>
+        <div class="sq bg-white border border-line shadow-soft p-6">
+          <p class="text-[11px] uppercase tracking-[0.25em] text-muted">Approach</p>
+          <h3 class="mt-2 text-lg font-semibold">Evidence-led negotiation</h3>
+          <p class="mt-2 text-sm text-muted">Clear strategy, robust comparables, disciplined execution.</p>
+        </div>
 
-            <div class="sq bg-white border border-line shadow-soft p-6">
-              <p class="text-[11px] uppercase tracking-[0.25em] text-muted">Availability</p>
-              <h3 class="mt-2 text-lg font-semibold">Fast, confidential advice</h3>
-              <p class="mt-2 text-sm text-muted">Early engagement protects leverage and reduces risk.</p>
-            </div>
-          </div>
+        <div class="sq bg-white border border-line shadow-soft p-6">
+          <p class="text-[11px] uppercase tracking-[0.25em] text-muted">Availability</p>
+          <h3 class="mt-2 text-lg font-semibold">Fast, confidential advice</h3>
+          <p class="mt-2 text-sm text-muted">Early engagement protects leverage and reduces risk.</p>
         </div>
       </div>
-    </section>
+    </div>
+  </div>
+</section>
+
 
     <!-- ABOUT (HIGHER UP) -->
     <section id="about" class="py-16">
