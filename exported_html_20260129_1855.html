@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>T1 Asset Management | Commercial Property Experts</title>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Feather Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans";
+    }
+
+/* Put this on the hero wrapper that sits over the image */
+.hero-overlay {
+  position: relative;
+}
+
+/* Black left-to-right overlay (strongest on the left, fades to the right) */
+.hero-overlay::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+
+  /* tweak the stops to taste */
+  background: linear-gradient(
+    90deg,
+    rgba(0, 0, 0, 0.82) 0%,
+    rgba(0, 0, 0, 0.65) 38%,
+    rgba(0, 0, 0, 0.28) 65%,
+    rgba(0, 0, 0, 0.01) 100%
+  );
+}
+
+
+    /* Hide scrollbars */
+    .no-scrollbar::-webkit-scrollbar { display: none; }
+    .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+    /* Squared system */
+    .sq { border-radius: 0 !important; }
+
+    /* Services scroller */
+    .svc-rail { scroll-snap-type: x mandatory; }
+    .svc-item { scroll-snap-align: start; }
+
+    /* Equal height */
+    .svc-card { height: 100%; display: flex; flex-direction: column; }
+    .svc-body { flex: 1; }
+
+    .is-disabled { opacity: .35; cursor: not-allowed; }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#0B1220",
+            line: "#E5E7EB",
+            muted: "#6B7280",
+            paper: "#FAFAFA",
+            card: "#F5F6F7"
+          },
+          boxShadow: {
+            soft: "0 10px 24px rgba(2, 6, 23, 0.08)",
+            crisp: "0 10px 20px rgba(2, 6, 23, 0.10)"
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-white text-ink antialiased">
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-50 bg-white/90 backdrop-blur border-b border-line">
+    <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-20">
+      <div class="h-16 flex items-center justify-between">
+        <!-- UPDATED LOGO (and removed tagline) -->
+        <a href="#" class="flex items-center">
+          <img
+            src="https://image2url.com/r2/default/images/1769712235293-23883a5d-b00b-4d78-a5ae-45edd6e11829.png"
+            alt="T1 Asset Management"
+            class="h-10 w-auto"
+            loading="eager"
+          />
+        </a>
+
+        <nav class="hidden md:flex items-center gap-8 text-sm">
+          <a href="#services" class="text-ink/80 hover:text-ink transition">Services</a>
+          <a href="#about" class="text-ink/80 hover:text-ink transition">About</a>
+          <a href="#approach" class="text-ink/80 hover:text-ink transition">Our Approach</a>
+          <a href="#contact" class="text-ink/80 hover:text-ink transition">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="#contact" class="hidden sm:inline-flex px-4 py-2 sq border border-line text-sm font-medium hover:bg-gray-50 transition">
+            Contact
+          </a>
+          <button type="button" data-open-callback class="inline-flex px-4 py-2 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
+            Request a call back
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="relative overflow-hidden">
+      <div class="relative hero-overlay">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/601fd0787b0ff91513ebe340/1740835506656-1H4NUYBEC6M7QTAM1TKA/unsplash-image-muqrIzbDut0.jpg?format=2500w"
+          alt="Modern commercial property"
+          class="w-full h-[70vh] min-h-[540px] object-cover"
+          loading="eager"
+        />
+
+        <div class="absolute inset-0">
+          <div class="max-w-7xl mx-auto h-full px-4 md:px-10 lg:px-20">
+            <div class="h-full flex items-center">
+              <div class="max-w-2xl">
+                <p class="text-[11px] uppercase tracking-[0.28em] text-white/70 mb-4">
+                  Leeds-based • UK-wide
+                </p>
+
+                <h1 class="text-white text-4xl md:text-6xl font-semibold tracking-tight leading-[1.05]">
+                  Maximise value. Reduce cost. Improve returns.
+                </h1>
+
+                <p class="mt-6 text-white/80 text-lg md:text-xl leading-relaxed">
+                  Specialist commercial property advice across lease events, rent reviews and portfolio strategy —
+                  delivered with clarity and discretion.
+                </p>
+
+                <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                  <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 sq bg-white text-ink font-semibold hover:bg-gray-100 transition">
+                    Speak to a surveyor <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                  </a>
+                  <a href="#services" class="inline-flex items-center justify-center px-6 py-3 sq border border-white/35 text-white font-semibold hover:bg-white/10 transition">
+                    View services
+                  </a>
+                </div>
+
+                <div class="mt-10 flex flex-wrap gap-x-8 gap-y-3 text-white/75 text-sm">
+                  <span class="inline-flex items-center gap-2"><i data-feather="check" class="w-4 h-4"></i>Lease events & negotiations</span>
+                  <span class="inline-flex items-center gap-2"><i data-feather="check" class="w-4 h-4"></i>Independent advice</span>
+                  <span class="inline-flex items-center gap-2"><i data-feather="check" class="w-4 h-4"></i>Time-critical support</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Minimal overlapping tiles -->
+      <div class="-mt-10 relative z-10">
+        <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-20">
+          <div class="grid md:grid-cols-3 gap-4">
+            <div class="sq bg-white border border-line shadow-soft p-6">
+              <p class="text-[11px] uppercase tracking-[0.25em] text-muted">Focus</p>
+              <h3 class="mt-2 text-lg font-semibold">Commercial lease events</h3>
+              <p class="mt-2 text-sm text-muted">Rent reviews, renewals, breaks and dispute support.</p>
+            </div>
+
+            <div class="sq bg-white border border-line shadow-soft p-6">
+              <p class="text-[11px] uppercase tracking-[0.25em] text-muted">Approach</p>
+              <h3 class="mt-2 text-lg font-semibold">Evidence-led negotiation</h3>
+              <p class="mt-2 text-sm text-muted">Clear strategy, robust comparables, disciplined execution.</p>
+            </div>
+
+            <div class="sq bg-white border border-line shadow-soft p-6">
+              <p class="text-[11px] uppercase tracking-[0.25em] text-muted">Availability</p>
+              <h3 class="mt-2 text-lg font-semibold">Fast, confidential advice</h3>
+              <p class="mt-2 text-sm text-muted">Early engagement protects leverage and reduces risk.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ABOUT (HIGHER UP) -->
+    <section id="about" class="py-16">
+      <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-20">
+        <div class="grid lg:grid-cols-2 gap-6 items-stretch">
+          <!-- Square photo -->
+          <div class="sq overflow-hidden border border-line bg-white">
+            <div class="aspect-square">
+              <img
+                src="https://images.squarespace-cdn.com/content/v1/68e96700e97e214d978494dd/1760132451474-GNV97O11MCL2MVS92IMU/unsplash-image-OIc_-XMXF_s.jpg?format=2500w"
+                alt="About T1 Asset Management"
+                class="w-full h-full object-cover"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+          <!-- Copy tile -->
+          <div class="sq border border-line bg-white p-8 flex flex-col">
+            <p class="text-[11px] uppercase tracking-[0.28em] text-muted">About</p>
+            <h2 class="mt-3 text-3xl md:text-4xl font-semibold tracking-tight">
+              Independent commercial property advice
+            </h2>
+
+            <p class="mt-4 text-muted leading-relaxed">
+              Established in 2014, T1 Asset Management provides impartial, outcome-focused advice from Leeds,
+              supporting clients across Yorkshire and the UK.
+            </p>
+
+            <p class="mt-4 text-muted leading-relaxed">
+              We help clients navigate key lease events with robust evidence and disciplined negotiation.
+            </p>
+
+            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+              <a href="#contact" class="inline-flex items-center justify-center px-5 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
+                Arrange a consultation <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+              </a>
+              <button type="button" data-open-callback class="inline-flex items-center justify-center px-5 py-3 sq border border-line text-sm font-semibold hover:bg-gray-50 transition">
+                Request a call back
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- OUR APPROACH (NEW) -->
+    <section id="approach" class="py-16 bg-paper">
+      <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-20">
+        <div class="grid lg:grid-cols-2 gap-6 items-stretch">
+          <div class="sq border border-line bg-white p-8">
+            <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Our Approach</p>
+            <h2 class="mt-3 text-3xl md:text-4xl font-semibold tracking-tight">
+              “Added value” at its core
+            </h2>
+
+            <p class="mt-4 text-muted leading-relaxed">
+              T1 Asset Management has “added value” at its core. We believe asset management is about three things:
+              maximising value, reducing costs, and increasing returns.
+            </p>
+
+            <p class="mt-4 text-muted leading-relaxed">
+              This philosophy is at the heart of our approach; both flexibility and in-depth market knowledge allows us to
+              develop and implement a bespoke estates strategy to suit our clients’ business needs.
+            </p>
+          </div>
+
+          <!-- three pillars -->
+          <div class="grid gap-4">
+            <div class="sq border border-line bg-white p-6">
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-lg font-semibold tracking-tight">Maximising value</h3>
+                <i data-feather="trending-up" class="w-5 h-5"></i>
+              </div>
+              <p class="mt-2 text-sm text-muted">Identify and implement opportunities that enhance long-term performance.</p>
+            </div>
+
+            <div class="sq border border-line bg-white p-6">
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-lg font-semibold tracking-tight">Reducing costs</h3>
+                <i data-feather="shield" class="w-5 h-5"></i>
+              </div>
+              <p class="mt-2 text-sm text-muted">Structured negotiation and timing to protect budgets and reduce exposure.</p>
+            </div>
+
+            <div class="sq border border-line bg-white p-6">
+              <div class="flex items-center justify-between gap-4">
+                <h3 class="text-lg font-semibold tracking-tight">Increasing returns</h3>
+                <i data-feather="bar-chart-2" class="w-5 h-5"></i>
+              </div>
+              <p class="mt-2 text-sm text-muted">Evidence-led strategy that improves income, outcomes and resilience.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES (BLACK & WHITE ONLY + “Professional Services”) -->
+    <section id="services" class="py-16 bg-paper">
+      <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-20">
+
+        <div class="mb-8">
+          <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Services</p>
+          <h2 class="mt-3 text-3xl md:text-4xl font-semibold tracking-tight">Professional services</h2>
+          <p class="mt-4 max-w-2xl text-muted leading-relaxed">
+            Clear, structured support across the lease events that matter most.
+          </p>
+        </div>
+
+        <div class="relative">
+          <div id="svcRail" class="svc-rail overflow-x-auto no-scrollbar">
+            <div class="flex gap-6 min-w-max pb-2">
+
+              <!-- Active-style card (black/white only) -->
+              <article class="svc-item w-[320px] md:w-[340px] sq border border-ink bg-white" data-svc>
+                <div class="p-8 svc-card" style="min-height: 380px;">
+                  <div class="svc-body">
+                    <div class="w-10 h-10 sq border border-ink bg-white flex items-center justify-center">
+                      <i data-feather="file-text" class="w-5 h-5"></i>
+                    </div>
+
+                    <h3 class="mt-10 text-2xl font-semibold tracking-tight">Lease Renewals</h3>
+                    <p class="mt-6 text-sm leading-relaxed text-muted">
+                      Renewal strategy under the Landlord &amp; Tenant Act 1954, with strict deadlines managed.
+                    </p>
+                  </div>
+
+                  <a href="#contact" class="mt-10 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                    Read more <i data-feather="arrow-right" class="w-4 h-4"></i>
+                  </a>
+                </div>
+              </article>
+
+              <article class="svc-item w-[320px] md:w-[340px] sq border border-line bg-card">
+                <div class="p-8 svc-card" style="min-height: 380px;">
+                  <div class="svc-body">
+                    <div class="w-10 h-10 sq border border-line bg-white flex items-center justify-center">
+                      <i data-feather="minus-circle" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="mt-10 text-2xl font-semibold tracking-tight">Rent Reviews (Tenants)</h3>
+                    <p class="mt-6 text-sm leading-relaxed text-muted">
+                      Early advice and negotiation to a fair open-market rent — protecting leverage and time limits.
+                    </p>
+                  </div>
+                  <a href="#contact" class="mt-10 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                    Read more <i data-feather="arrow-right" class="w-4 h-4"></i>
+                  </a>
+                </div>
+              </article>
+
+              <article class="svc-item w-[320px] md:w-[340px] sq border border-line bg-card">
+                <div class="p-8 svc-card" style="min-height: 380px;">
+                  <div class="svc-body">
+                    <div class="w-10 h-10 sq border border-line bg-white flex items-center justify-center">
+                      <i data-feather="plus-circle" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="mt-10 text-2xl font-semibold tracking-tight">Rent Reviews (Landlords)</h3>
+                    <p class="mt-6 text-sm leading-relaxed text-muted">
+                      Evidence-led rental growth with clear options and flexible fee structures.
+                    </p>
+                  </div>
+                  <a href="#contact" class="mt-10 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                    Read more <i data-feather="arrow-right" class="w-4 h-4"></i>
+                  </a>
+                </div>
+              </article>
+
+              <article class="svc-item w-[320px] md:w-[340px] sq border border-line bg-card">
+                <div class="p-8 svc-card" style="min-height: 380px;">
+                  <div class="svc-body">
+                    <div class="w-10 h-10 sq border border-line bg-white flex items-center justify-center">
+                      <i data-feather="tool" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="mt-10 text-2xl font-semibold tracking-tight">Section 18 Valuations</h3>
+                    <p class="mt-6 text-sm leading-relaxed text-muted">
+                      Clear Section 18 assessments to support settlement of complex dilapidations disputes.
+                    </p>
+                  </div>
+                  <a href="#contact" class="mt-10 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                    Read more <i data-feather="arrow-right" class="w-4 h-4"></i>
+                  </a>
+                </div>
+              </article>
+
+              <article class="svc-item w-[320px] md:w-[340px] sq border border-line bg-card">
+                <div class="p-8 svc-card" style="min-height: 380px;">
+                  <div class="svc-body">
+                    <div class="w-10 h-10 sq border border-line bg-white flex items-center justify-center">
+                      <i data-feather="alert-triangle" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="mt-10 text-2xl font-semibold tracking-tight">Break Clause Issues</h3>
+                    <p class="mt-6 text-sm leading-relaxed text-muted">
+                      Reduce risk and execute break conditions correctly — first time.
+                    </p>
+                  </div>
+                  <a href="#contact" class="mt-10 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                    Read more <i data-feather="arrow-right" class="w-4 h-4"></i>
+                  </a>
+                </div>
+              </article>
+
+              <article class="svc-item w-[320px] md:w-[340px] sq border border-line bg-card">
+                <div class="p-8 svc-card" style="min-height: 380px;">
+                  <div class="svc-body">
+                    <div class="w-10 h-10 sq border border-line bg-white flex items-center justify-center">
+                      <i data-feather="scale" class="w-5 h-5"></i>
+                    </div>
+                    <h3 class="mt-10 text-2xl font-semibold tracking-tight">Expert Witness</h3>
+                    <p class="mt-6 text-sm leading-relaxed text-muted">
+                      Reports and dispute support for arbitration or independent expert determination.
+                    </p>
+                  </div>
+                  <a href="#contact" class="mt-10 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                    Read more <i data-feather="arrow-right" class="w-4 h-4"></i>
+                  </a>
+                </div>
+              </article>
+
+            </div>
+          </div>
+
+          <!-- Bottom-left arrows -->
+          <div class="mt-8 flex items-center gap-3">
+            <button
+              type="button"
+              id="svcPrev"
+              class="w-10 h-10 rounded-full border border-line bg-white hover:bg-gray-50 transition inline-flex items-center justify-center"
+              aria-label="Previous"
+            >
+              <i data-feather="chevron-left" class="w-4 h-4"></i>
+            </button>
+
+            <button
+              type="button"
+              id="svcNext"
+              class="w-10 h-10 rounded-full border border-line bg-white hover:bg-gray-50 transition inline-flex items-center justify-center"
+              aria-label="Next"
+            >
+              <i data-feather="chevron-right" class="w-4 h-4"></i>
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact" class="py-16">
+      <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-20">
+        <div class="grid lg:grid-cols-2 gap-10">
+          <div class="sq border border-line bg-white p-8">
+            <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Contact</p>
+            <h2 class="mt-3 text-3xl font-semibold tracking-tight">How can we help?</h2>
+            <p class="mt-4 text-muted leading-relaxed">
+              Share a few details and we’ll respond promptly. For time-sensitive lease events, request a call back.
+            </p>
+
+            <div class="mt-8 space-y-5 text-sm">
+              <div class="flex items-start gap-3">
+                <i data-feather="map-pin" class="w-5 h-5 mt-0.5"></i>
+                <div>
+                  <p class="font-semibold">Office</p>
+                  <p class="text-muted">Unit 19 Holly Park Mills, Calverley, Leeds LS28 5QS</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <i data-feather="phone" class="w-5 h-5 mt-0.5"></i>
+                <div>
+                  <p class="font-semibold">Phone</p>
+                  <p class="text-muted">0791 2222 905</p>
+                </div>
+              </div>
+              <div class="flex items-start gap-3">
+                <i data-feather="mail" class="w-5 h-5 mt-0.5"></i>
+                <div>
+                  <p class="font-semibold">Email</p>
+                  <p class="text-muted">rob@t1assetmanagement.co.uk</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+              <button type="button" data-open-callback class="inline-flex items-center justify-center px-5 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
+                Request a call back
+              </button>
+              <a href="#services" class="inline-flex items-center justify-center px-5 py-3 sq border border-line text-sm font-semibold hover:bg-gray-50 transition">
+                View services
+              </a>
+            </div>
+          </div>
+
+          <div class="sq border border-line bg-white p-8">
+            <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Message</p>
+            <h3 class="mt-3 text-xl font-semibold">Send an enquiry</h3>
+
+            <form class="mt-6 space-y-4" onsubmit="event.preventDefault(); alert('Thanks — we will be in touch shortly.');">
+              <div>
+                <label class="block text-sm font-medium">Name</label>
+                <input type="text" required class="mt-2 w-full sq border border-line px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-ink/10 focus:border-ink"
+                  placeholder="Your name" />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium">Email</label>
+                <input type="email" required class="mt-2 w-full sq border border-line px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-ink/10 focus:border-ink"
+                  placeholder="you@company.com" />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium">Phone (optional)</label>
+                <input type="tel" class="mt-2 w-full sq border border-line px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-ink/10 focus:border-ink"
+                  placeholder="07..." />
+              </div>
+
+              <div>
+                <label class="block text-sm font-medium">How can we help?</label>
+                <textarea required rows="5" class="mt-2 w-full sq border border-line px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-ink/10 focus:border-ink"
+                  placeholder="Briefly describe your property, lease event and timeframe."></textarea>
+              </div>
+
+              <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
+                Send enquiry <i data-feather="send" class="ml-2 w-4 h-4"></i>
+              </button>
+
+              <p class="text-xs text-muted leading-relaxed">
+                By submitting this form you agree we may contact you in response to your enquiry.
+              </p>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-white border-t border-line">
+      <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-20 py-14">
+        <div class="grid md:grid-cols-4 gap-10">
+          <div>
+            <img
+              src="https://image2url.com/r2/default/images/1769712235293-23883a5d-b00b-4d78-a5ae-45edd6e11829.png"
+              alt="T1 Asset Management"
+              class="h-10 w-auto"
+              loading="lazy"
+            />
+            <p class="mt-4 text-sm text-muted leading-relaxed">
+              Independent commercial property advice across Yorkshire and the UK.
+            </p>
+          </div>
+
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Services</p>
+            <ul class="mt-4 space-y-2 text-sm">
+              <li><a class="hover:underline" href="#services">Lease Renewals</a></li>
+              <li><a class="hover:underline" href="#services">Rent Reviews (Tenants)</a></li>
+              <li><a class="hover:underline" href="#services">Rent Reviews (Landlords)</a></li>
+              <li><a class="hover:underline" href="#services">Section 18 Valuations</a></li>
+              <li><a class="hover:underline" href="#services">Break Clause Issues</a></li>
+              <li><a class="hover:underline" href="#services">Expert Witness</a></li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Company</p>
+            <ul class="mt-4 space-y-2 text-sm">
+              <li><a class="hover:underline" href="#about">About</a></li>
+              <li><a class="hover:underline" href="#approach">Our Approach</a></li>
+              <li><a class="hover:underline" href="#contact">Contact</a></li>
+              <li><button data-open-callback class="text-left hover:underline">Request a call back</button></li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Contact</p>
+            <div class="mt-4 space-y-3 text-sm text-muted">
+              <p class="text-ink"><span class="text-muted">Phone:</span> 0791 2222 905</p>
+              <p class="text-ink"><span class="text-muted">Email:</span> rob@t1assetmanagement.co.uk</p>
+              <p>Unit 19 Holly Park Mills, Calverley, Leeds LS28 5QS</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-line flex flex-col md:flex-row gap-4 items-start md:items-center justify-between">
+          <p class="text-sm text-muted">© <span id="year"></span> T1 Asset Management. All rights reserved.</p>
+          <div class="flex gap-6 text-sm text-muted">
+            <a href="#" class="hover:underline">Privacy</a>
+            <a href="#" class="hover:underline">Terms</a>
+            <a href="#" class="hover:underline">Cookies</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- CALLBACK MODAL -->
+  <div id="callbackModal" class="fixed inset-0 z-[60] hidden">
+    <div class="absolute inset-0 bg-black/60"></div>
+
+    <div class="relative h-full flex items-center justify-center p-4">
+      <div class="sq w-full max-w-lg bg-white border border-line shadow-crisp">
+        <div class="p-6 border-b border-line flex items-center justify-between">
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Request a call back</p>
+            <h3 class="mt-1 text-lg font-semibold">No obligation chat</h3>
+          </div>
+          <button type="button" data-close-callback class="p-2 sq border border-line hover:bg-gray-50 transition" aria-label="Close">
+            <i data-feather="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div class="p-6">
+          <p class="text-sm text-muted leading-relaxed">
+            Leave your name and number and we’ll call you to discuss how we can help.
+          </p>
+
+          <form class="mt-5 space-y-4" onsubmit="event.preventDefault(); closeCallback(); alert('Thanks — we will call you back shortly.');">
+            <div>
+              <label class="block text-sm font-medium">Name</label>
+              <input type="text" required class="mt-2 w-full sq border border-line px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-ink/10 focus:border-ink"
+                placeholder="Your name" />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium">Phone number</label>
+              <input type="tel" required class="mt-2 w-full sq border border-line px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-ink/10 focus:border-ink"
+                placeholder="07..." />
+            </div>
+
+            <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
+              Call me back <i data-feather="phone-call" class="ml-2 w-4 h-4"></i>
+            </button>
+
+            <button type="button" data-close-callback class="w-full inline-flex items-center justify-center px-6 py-3 sq border border-line text-sm font-semibold hover:bg-gray-50 transition">
+              Close
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    feather.replace();
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Callback modal
+    const modal = document.getElementById("callbackModal");
+    function openCallback() {
+      modal.classList.remove("hidden");
+      document.body.classList.add("overflow-hidden");
+      feather.replace();
+    }
+    function closeCallback() {
+      modal.classList.add("hidden");
+      document.body.classList.remove("overflow-hidden");
+    }
+    window.closeCallback = closeCallback;
+
+    document.querySelectorAll("[data-open-callback]").forEach(btn => btn.addEventListener("click", openCallback));
+    document.querySelectorAll("[data-close-callback]").forEach(btn => btn.addEventListener("click", closeCallback));
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !modal.classList.contains("hidden")) closeCallback();
+    });
+    modal.addEventListener("click", (e) => {
+      if (e.target === modal.firstElementChild) closeCallback();
+    });
+
+    // Services scroller
+    const rail = document.getElementById("svcRail");
+    const prev = document.getElementById("svcPrev");
+    const next = document.getElementById("svcNext");
+
+    function cardScrollAmount(){
+      const card = rail.querySelector("article");
+      if(!card) return 360;
+      const w = card.getBoundingClientRect().width;
+      return Math.round(w + 24);
+    }
+    function scrollRail(dir){
+      rail.scrollBy({ left: dir * cardScrollAmount(), behavior: "smooth" });
+    }
+    prev.addEventListener("click", () => scrollRail(-1));
+    next.addEventListener("click", () => scrollRail(1));
+
+    function updateDisabled(){
+      const max = rail.scrollWidth - rail.clientWidth - 2;
+      const atStart = rail.scrollLeft <= 2;
+      const atEnd = rail.scrollLeft >= max;
+
+      prev.disabled = atStart;
+      next.disabled = atEnd;
+
+      prev.classList.toggle("is-disabled", atStart);
+      next.classList.toggle("is-disabled", atEnd);
+    }
+    rail.addEventListener("scroll", () => requestAnimationFrame(updateDisabled));
+    window.addEventListener("resize", updateDisabled);
+    updateDisabled();
+  </script>
+</body>
+</html>
