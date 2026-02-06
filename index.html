@@ -79,7 +79,7 @@
 
     .menu-drawer{
       position: fixed;
-      top: 72px; /* matches updated header height */
+      top: 72px; /* matches header height */
       left: 0; right: 0;
       background: #fff;
       border-top: 1px solid #E5E7EB;
@@ -127,7 +127,7 @@
       outline: none;
     }
 
-    /* Subtle service card hover (match PS page) */
+    /* Subtle service card hover */
     .svc-cardShell{
       transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
       border-color: rgba(2,6,23,.10);
@@ -164,7 +164,7 @@
 
 <body class="bg-white text-ink antialiased">
 
-  <!-- NAV (match Professional Services spacing) -->
+  <!-- NAV -->
   <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-black/5">
     <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
       <div class="h-[72px] flex items-center justify-between">
@@ -232,7 +232,7 @@
 
   <main>
 
-    <!-- HERO (more like Professional Services: cleaner, fewer elements) -->
+    <!-- HERO -->
     <section class="relative overflow-hidden">
       <div class="relative hero-overlay">
         <img
@@ -244,7 +244,6 @@
 
         <div class="absolute inset-0">
           <div class="max-w-7xl mx-auto h-full px-4 md:px-10 lg:px-24">
-            <!-- slightly lower like PS page -->
             <div class="h-full flex items-center pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-32 md:pb-24">
               <div class="w-full">
                 <div class="max-w-3xl reveal">
@@ -286,7 +285,7 @@
         </div>
       </div>
 
-      <!-- Overlap tiles (kept but refined: less “boxy”, more PS style) -->
+      <!-- Overlap tiles -->
       <div class="-mt-6 sm:-mt-10 relative z-10">
         <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
           <div class="grid md:grid-cols-3 gap-4">
@@ -312,7 +311,7 @@
       </div>
     </section>
 
-    <!-- ABOUT (match PS width + spacing) -->
+    <!-- ABOUT -->
     <section id="about" class="py-16 md:py-20">
       <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
         <div class="grid lg:grid-cols-2 gap-6 items-stretch">
@@ -405,7 +404,7 @@
       </div>
     </section>
 
-    <!-- SERVICES (restyled to look like PS: “editorial” section header + calmer cards) -->
+    <!-- SERVICES -->
     <section id="services" class="py-16 md:py-20 bg-paper">
       <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
         <div class="max-w-3xl reveal">
@@ -428,7 +427,6 @@
           <div id="svcRail" class="svc-rail overflow-x-auto no-scrollbar">
             <div class="flex gap-6 min-w-max pb-2">
 
-              <!-- All service “Learn more” now goes to /t1asset/professional-services -->
               <article class="svc-item w-[320px] md:w-[340px] sq border bg-white reveal svc-cardShell">
                 <div class="p-8 svc-card" style="min-height: 360px;">
                   <div class="svc-body">
@@ -557,7 +555,7 @@
       </div>
     </section>
 
-    <!-- CONTACT (same style language as PS) -->
+    <!-- CONTACT (✅ Formspree integrated: https://formspree.io/f/xgoleoed) -->
     <section id="contact" class="py-16 md:py-20">
       <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
 
@@ -608,43 +606,54 @@
           </div>
         </div>
 
-        <div class="mt-8 sq border border-line bg-white p-8 sm:p-10 shadow-soft reveal">
-          <form class="space-y-4" onsubmit="event.preventDefault(); alert('Thanks — we will be in touch shortly.');">
+        <!-- ✅ Formspree form -->
+        <div class="mt-8 sq border border-line bg-white p-8 sm:p-10 shadow-soft reveal" id="form">
+          <form
+            id="contactForm"
+            action="https://formspree.io/f/xgoleoed"
+            method="POST"
+            class="space-y-4"
+          >
+            <input type="hidden" name="_subject" value="New website enquiry — T1 Asset Management" />
+            <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+
             <div class="grid sm:grid-cols-2 gap-4">
               <div>
                 <label class="block text-sm font-medium">First Name <span class="text-muted">(required)</span></label>
-                <input type="text" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="First Name" />
+                <input type="text" name="first_name" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="First Name" autocomplete="given-name" />
               </div>
               <div>
                 <label class="block text-sm font-medium">Last Name <span class="text-muted">(required)</span></label>
-                <input type="text" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Last Name" />
+                <input type="text" name="last_name" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Last Name" autocomplete="family-name" />
               </div>
             </div>
 
             <div class="grid sm:grid-cols-2 gap-4">
               <div>
                 <label class="block text-sm font-medium">Phone</label>
-                <input type="tel" class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="07..." />
+                <input type="tel" name="phone" class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="07..." autocomplete="tel" />
               </div>
               <div>
                 <label class="block text-sm font-medium">Email <span class="text-muted">(required)</span></label>
-                <input type="email" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Email" />
+                <input type="email" name="email" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Email" autocomplete="email" />
               </div>
             </div>
 
             <div>
               <label class="block text-sm font-medium">Message</label>
-              <textarea rows="5" class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Tell us what you need help with..."></textarea>
+              <textarea name="message" rows="5" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Tell us what you need help with..."></textarea>
             </div>
 
             <div class="flex flex-col sm:flex-row gap-3">
-              <button type="submit" class="flex-1 inline-flex items-center justify-center px-6 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
+              <button type="submit" id="contactSubmit" class="flex-1 inline-flex items-center justify-center px-6 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
                 Send enquiry <i data-feather="send" class="ml-2 w-4 h-4"></i>
               </button>
               <button type="button" data-open-callback class="flex-1 inline-flex items-center justify-center px-6 py-3 sq border border-line text-sm font-semibold hover:bg-gray-50 transition">
                 Request a call back
               </button>
             </div>
+
+            <p id="formStatus" class="text-xs text-muted leading-relaxed hidden"></p>
 
             <p class="text-xs text-muted leading-relaxed">
               By submitting this form you agree we may contact you in response to your enquiry.
@@ -703,9 +712,9 @@
         <div class="mt-12 pt-8 border-t border-white/15 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between reveal">
           <p class="text-sm text-white/60">© <span id="year"></span> T1 Asset Management. All rights reserved.</p>
           <div class="flex gap-6 text-sm">
-            <a href="#" class="text-white/60 hover:text-white transition">Privacy</a>
-            <a href="#" class="text-white/60 hover:text-white transition">Terms</a>
-            <a href="#" class="text-white/60 hover:text-white transition">Cookies</a>
+            <a href="/t1asset/privacy-policy" class="text-white/60 hover:text-white transition">Privacy</a>
+            <a href="/t1asset/terms" class="text-white/60 hover:text-white transition">Terms</a>
+            <a href="/t1asset/cookies" class="text-white/60 hover:text-white transition">Cookies</a>
           </div>
         </div>
       </div>
@@ -734,24 +743,30 @@
             Leave your name and number and we’ll call you to discuss how we can help.
           </p>
 
-          <form class="mt-5 space-y-4" onsubmit="event.preventDefault(); closeCallback(); alert('Thanks — we will call you back shortly.');">
+          <form id="callbackForm" action="https://formspree.io/f/xgoleoed" method="POST" class="mt-5 space-y-4">
+            <input type="hidden" name="_subject" value="Callback request — T1 Asset Management" />
+            <input type="hidden" name="form_type" value="callback_request" />
+            <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+
             <div>
               <label class="block text-sm font-medium">Name</label>
-              <input type="text" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Your name" />
+              <input type="text" name="name" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Your name" />
             </div>
 
             <div>
               <label class="block text-sm font-medium">Phone number</label>
-              <input type="tel" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="07..." />
+              <input type="tel" name="phone" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="07..." />
             </div>
 
-            <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
+            <button type="submit" id="callbackSubmit" class="w-full inline-flex items-center justify-center px-6 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
               Call me back <i data-feather="phone-call" class="ml-2 w-4 h-4"></i>
             </button>
 
             <button type="button" data-close-callback class="w-full inline-flex items-center justify-center px-6 py-3 sq border border-line text-sm font-semibold hover:bg-gray-50 transition">
               Close
             </button>
+
+            <p id="callbackStatus" class="text-xs text-muted leading-relaxed hidden"></p>
           </form>
         </div>
       </div>
@@ -863,6 +878,85 @@
       });
     }, { threshold: 0.6, rootMargin: "0px 0px -20% 0px" });
     approachCards.forEach((el) => approachIO.observe(el));
+
+    // ✅ Formspree AJAX submit (Contact form)
+    (function () {
+      const form = document.getElementById("contactForm");
+      const btn = document.getElementById("contactSubmit");
+      const status = document.getElementById("formStatus");
+      if (!form) return;
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        status.classList.remove("hidden");
+        status.textContent = "Sending…";
+        btn.disabled = true;
+        btn.classList.add("opacity-60");
+
+        try {
+          const formData = new FormData(form);
+          const res = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" }
+          });
+
+          if (res.ok) {
+            form.reset();
+            status.textContent = "Thanks — we will be in touch shortly.";
+          } else {
+            status.textContent = "Sorry — something went wrong. Please try again or email rob@t1assetmanagement.co.uk.";
+          }
+        } catch (err) {
+          status.textContent = "Sorry — something went wrong. Please try again or email rob@t1assetmanagement.co.uk.";
+        } finally {
+          btn.disabled = false;
+          btn.classList.remove("opacity-60");
+          if (window.feather) window.feather.replace();
+        }
+      });
+    })();
+
+    // ✅ Formspree AJAX submit (Callback modal)
+    (function () {
+      const form = document.getElementById("callbackForm");
+      const btn = document.getElementById("callbackSubmit");
+      const status = document.getElementById("callbackStatus");
+      if (!form) return;
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        status.classList.remove("hidden");
+        status.textContent = "Sending…";
+        btn.disabled = true;
+        btn.classList.add("opacity-60");
+
+        try {
+          const formData = new FormData(form);
+          const res = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" }
+          });
+
+          if (res.ok) {
+            form.reset();
+            status.textContent = "Thanks — we will call you back shortly.";
+            setTimeout(() => { closeCallback(); }, 900);
+          } else {
+            status.textContent = "Sorry — something went wrong. Please try again.";
+          }
+        } catch (err) {
+          status.textContent = "Sorry — something went wrong. Please try again.";
+        } finally {
+          btn.disabled = false;
+          btn.classList.remove("opacity-60");
+          if (window.feather) window.feather.replace();
+        }
+      });
+    })();
   </script>
 </body>
 </html>
