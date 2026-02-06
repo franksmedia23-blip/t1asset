@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>T1 Asset Management | Professional Services</title>
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Feather Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans";
+    }
+
+    /* Squared system */
+    .sq { border-radius: 0 !important; }
+
+    /* Fade-in on scroll */
+    .reveal{
+      opacity:0;
+      transform:translateY(10px);
+      transition:opacity 700ms ease, transform 700ms ease;
+      will-change:opacity, transform;
+    }
+    .reveal.is-visible{ opacity:1; transform:translateY(0); }
+
+    /* Mobile menu overlay */
+    .menu-backdrop{
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.35);
+      opacity: 0; pointer-events: none;
+      transition: opacity 180ms ease;
+      z-index: 60;
+    }
+    .menu-backdrop.open{ opacity: 1; pointer-events: auto; }
+
+    .menu-drawer{
+      position: fixed;
+      top: 72px;
+      left: 0; right: 0;
+      background: #fff;
+      border-top: 1px solid #E5E7EB;
+      transform: translateY(-10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 180ms ease, transform 180ms ease;
+      z-index: 70;
+    }
+    .menu-drawer.open{
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .no-scroll { overflow: hidden; }
+
+    /* Premium separators */
+    .hairline{ height:1px; background: rgba(2,6,23,.08); }
+
+    /* Service row hover (very subtle) */
+    .svc-row{
+      transition: background-color 200ms ease, border-color 200ms ease;
+      border-color: rgba(2,6,23,.10);
+    }
+    @media (hover:hover) and (pointer:fine){
+      .svc-row:hover{
+        background: rgba(2,6,23,.02);
+        border-color: rgba(2,6,23,.18);
+      }
+    }
+
+    /* Inputs */
+    .f-in{
+      transition: box-shadow 200ms ease, border-color 200ms ease, background-color 200ms ease;
+      border: 1px solid rgba(2,6,23,.12);
+      background: #fff;
+    }
+    .f-in:focus{
+      border-color: rgba(2,6,23,.55);
+      box-shadow: 0 0 0 4px rgba(2,6,23,.08);
+      outline: none;
+    }
+
+    /* --- HERO overlay (darker) --- */
+    .hero-overlay{ position: relative; }
+    .hero-overlay::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      pointer-events:none;
+      background:
+        radial-gradient(900px 520px at 16% 50%, rgba(0,0,0,.76) 0%, rgba(0,0,0,.28) 62%, rgba(0,0,0,0) 100%),
+        linear-gradient(90deg, rgba(0,0,0,.66) 0%, rgba(0,0,0,.22) 58%, rgba(0,0,0,.08) 100%);
+    }
+
+    /* Typography tuning */
+    .hero-h1{ letter-spacing:-0.035em; }
+    @media (min-width: 1024px){ .hero-h1{ letter-spacing:-0.045em; } }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#0B1220",
+            muted: "#6B7280",
+            paper: "#FAFAFA",
+            line: "#E5E7EB"
+          },
+          boxShadow: {
+            soft: "0 10px 24px rgba(2, 6, 23, 0.08)",
+            crisp: "0 10px 20px rgba(2, 6, 23, 0.10)"
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-white text-ink antialiased">
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-black/5">
+    <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
+      <div class="h-[72px] flex items-center justify-between">
+        <a href="#" class="flex items-center">
+          <img
+            src="https://image2url.com/r2/default/images/1769712235293-23883a5d-b00b-4d78-a5ae-45edd6e11829.png"
+            alt="T1 Asset Management"
+            class="h-10 w-auto"
+            loading="eager"
+          />
+        </a>
+
+        <nav class="hidden md:flex items-center gap-10 text-[13px] tracking-wide">
+          <a href="#" class="text-ink/80 hover:text-ink transition">Home</a>
+          <a href="#services" class="text-ink/80 hover:text-ink transition">Other Services</a>
+          <a href="#contact" class="text-ink/80 hover:text-ink transition">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="#contact" class="hidden sm:inline-flex px-5 py-[10px] sq border border-line text-[13px] font-medium hover:bg-gray-50 transition">
+            Contact
+          </a>
+
+          <button type="button" data-open-callback class="hidden sm:inline-flex px-5 py-[10px] sq bg-ink text-white text-[13px] font-semibold hover:bg-black transition">
+            Request a call back
+          </button>
+
+          <button
+            type="button"
+            id="menuBtn"
+            class="md:hidden inline-flex items-center justify-center w-10 h-10 sq border border-line hover:bg-gray-50 transition"
+            aria-label="Open menu"
+            aria-expanded="false"
+          >
+            <i data-feather="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu overlay -->
+  <div id="menuBackdrop" class="menu-backdrop md:hidden" aria-hidden="true"></div>
+
+  <div id="menuDrawer" class="menu-drawer md:hidden" role="dialog" aria-modal="true" aria-label="Mobile menu">
+    <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24 py-4">
+      <nav class="flex flex-col text-sm">
+        <a href="#" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Home</a>
+        <a href="#services" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Other Services</a>
+        <a href="#contact" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Contact</a>
+
+        <button
+          type="button"
+          data-open-callback
+          data-close-menu
+          class="mt-3 w-full sq bg-ink text-white font-semibold px-4 py-3 text-left hover:bg-black transition"
+        >
+          Request a call back
+        </button>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- HERO (title + two buttons only; no text box) -->
+    <section class="relative overflow-hidden">
+      <div class="relative hero-overlay">
+        <img
+          src="https://images.squarespace-cdn.com/content/v1/68e96700e97e214d978494dd/1760132451474-GNV97O11MCL2MVS92IMU/unsplash-image-OIc_-XMXF_s.jpg?format=2500w"
+          alt="Close-up of a modern glass office building with multiple floors, reflecting the daytime sky."
+          class="w-full h-[72vh] min-h-[640px] md:h-[78vh] object-cover"
+          loading="eager"
+        />
+
+        <div class="absolute inset-0">
+          <div class="max-w-7xl mx-auto h-full px-4 md:px-10 lg:px-24">
+            <!-- title slightly lower -->
+            <div class="h-full flex items-center pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-32 md:pb-24">
+              <div class="w-full">
+                <div class="max-w-3xl reveal">
+                  <h1 class="hero-h1 text-white font-semibold leading-[1.02]
+                             text-[40px] sm:text-[52px] md:text-[64px] lg:text-[72px]">
+                    Professional Services
+                  </h1>
+
+                  <div class="mt-8 flex flex-col sm:flex-row gap-3">
+                    <a href="#services"
+                       class="inline-flex items-center justify-center px-6 py-3 sq bg-white text-ink text-sm font-semibold hover:bg-gray-100 transition">
+                      Learn more
+                    </a>
+
+                    <a href="#contact"
+                       class="inline-flex items-center justify-center px-6 py-3 sq border border-white/30 text-white text-sm font-semibold hover:bg-white/10 transition">
+                      Contact
+                    </a>
+                  </div>
+
+                  <div class="mt-10 h-px w-full bg-white/15"></div>
+
+                  <div class="mt-6 flex flex-wrap items-center gap-x-3 gap-y-2 text-white/65 text-[12px] tracking-wide">
+                    <span>Lease renewals</span><span class="opacity-40">•</span>
+                    <span>Rent reviews</span><span class="opacity-40">•</span>
+                    <span>Dispute support</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- CALM INTRO -->
+    <section class="py-16 md:py-20">
+      <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
+        <div class="max-w-3xl reveal">
+          <p class="text-[11px] uppercase tracking-[0.28em] text-muted">T1 Asset Management, Leeds</p>
+          <h2 class="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">
+            Professional Services
+          </h2>
+          <p class="mt-5 text-muted leading-relaxed">
+            T1 Asset Management is a commercial property consultancy based in Leeds, providing expert and impartial advice.
+            With over 11 years of experience, we ensure fair, market-driven terms for tenants and landlords. Get in touch for more
+            information on how we can assist with your commercial property needs.
+          </p>
+          <div class="mt-7 flex flex-col sm:flex-row gap-3">
+            <a href="#contact" class="inline-flex items-center justify-center px-5 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
+              Contact us
+            </a>
+            <button type="button" data-open-callback class="inline-flex items-center justify-center px-5 py-3 sq border border-line text-sm font-semibold hover:bg-gray-50 transition">
+              Request a call back
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SERVICES (fixed image height on desktop to stop tall rows) -->
+    <section id="services" class="py-16 md:py-20 bg-paper">
+      <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
+        <div class="max-w-3xl reveal">
+          <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Other Services</p>
+          <h2 class="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">Professional Services</h2>
+        </div>
+
+        <div class="mt-10 md:mt-14 space-y-6">
+
+          <!-- Lease Renewals -->
+          <article class="sq border bg-white overflow-hidden svc-row reveal">
+            <div class="grid lg:grid-cols-5">
+              <div class="lg:col-span-2">
+                <div class="h-[220px] sm:h-[260px] lg:h-[320px]">
+                  <img
+                    src="https://images.unsplash.com/photo-1588671186197-7fb734e9c33a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Modern commercial interior with clean architectural lines."
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div class="lg:col-span-3 p-7 sm:p-10">
+                <h3 class="text-2xl font-semibold tracking-tight">Lease Renewals</h3>
+                <div class="mt-5 space-y-4 text-sm leading-relaxed text-muted">
+                  <p>
+                    A commercial lease will ultimately reach its contractual end. The renewal of a lease can be a technical and legal process with the service of Statutory Notices which can ultimately lead to the matter being heard in court.
+                  </p>
+                  <p>
+                    Our aim would be to advise on the most appropriate commercial outcome whilst working within the strict timeframes set down by the Landlord and Tenant Act 1954
+                  </p>
+                </div>
+                <a href="#contact" class="mt-7 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  Learn More <i data-feather="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Rent Reviews for Tenants -->
+          <article class="sq border bg-white overflow-hidden svc-row reveal">
+            <div class="grid lg:grid-cols-5">
+              <div class="lg:col-span-2">
+                <div class="h-[220px] sm:h-[260px] lg:h-[320px]">
+                  <img
+                    src="https://images.unsplash.com/photo-1526637201259-da59cb348242?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Office meeting space with a professional setting."
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div class="lg:col-span-3 p-7 sm:p-10">
+                <h3 class="text-2xl font-semibold tracking-tight">Rent Reviews for Tenants</h3>
+                <div class="mt-5 space-y-4 text-sm leading-relaxed text-muted">
+                  <p>
+                    If you're a tenant in Leeds or anywhere else in the UK facing a commercial rent review, the lease terms will significantly impact your rent. Talking to T1 Asset Management at an early date will ensure that you do not fall foul of time limits which could have serious repercussions on your tenancy.
+                  </p>
+                  <p>
+                    As specialist commercial rent review surveyors we can help to ensure that an excessive demand is reduced and a fair open market rental value achieved.
+                  </p>
+                </div>
+                <a href="#contact" class="mt-7 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  Learn More <i data-feather="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Rent Reviews for Landlords -->
+          <article class="sq border bg-white overflow-hidden svc-row reveal">
+            <div class="grid lg:grid-cols-5">
+              <div class="lg:col-span-2">
+                <div class="h-[220px] sm:h-[260px] lg:h-[320px]">
+                  <img
+                    src="https://images.unsplash.com/photo-1667658070381-c46a2c6643a7?q=80&w=1631&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Contemporary commercial architecture in an urban environment."
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div class="lg:col-span-3 p-7 sm:p-10">
+                <h3 class="text-2xl font-semibold tracking-tight">Rent Reviews for Landlords</h3>
+                <div class="mt-5 space-y-4 text-sm leading-relaxed text-muted">
+                  <p>
+                    If you're a commercial landlord of a shop, office, or industrial/warehouse property and want to maximise your investment, T1 Asset Management is your first step.
+                  </p>
+                  <p>
+                    In confidence as specialist commercial rent review surveyors let us analyse the lease without charge, and explain our various flexible cost effective fee structures.
+                  </p>
+                </div>
+                <a href="#contact" class="mt-7 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  Learn More <i data-feather="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Section 18 Valuations (NOT tall now: fixed image height + tighter spacing) -->
+          <article class="sq border bg-white overflow-hidden svc-row reveal">
+            <div class="grid lg:grid-cols-5">
+              <div class="lg:col-span-2">
+                <div class="h-[220px] sm:h-[260px] lg:h-[320px]">
+                  <img
+                    src="https://images.unsplash.com/photo-1653304797360-40d839e8319e?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Professional workspace detail suitable for valuation and reporting."
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div class="lg:col-span-3 p-7 sm:p-10">
+                <h3 class="text-2xl font-semibold tracking-tight">Section 18 Valuations</h3>
+                <div class="mt-4 space-y-3 text-sm leading-relaxed text-muted">
+                  <p>
+                    At the end of leases, the outgoing tenant may be required to repair the property, which can lead to disagreement over what constitutes an acceptable standard of repair.
+                  </p>
+                  <p>
+                    Damages may be capped by Section 18. We provide clear Section 18 Valuations to support settlement of complex and contentious dilapidations matters.
+                  </p>
+                </div>
+                <a href="#contact" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  Learn More <i data-feather="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Break Clause Issues -->
+          <article class="sq border bg-white overflow-hidden svc-row reveal">
+            <div class="grid lg:grid-cols-5">
+              <div class="lg:col-span-2">
+                <div class="h-[220px] sm:h-[260px] lg:h-[320px]">
+                  <img
+                    src="https://images.unsplash.com/photo-1770011916972-489f8d389075?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Professional legal or contractual context imagery."
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div class="lg:col-span-3 p-7 sm:p-10">
+                <h3 class="text-2xl font-semibold tracking-tight">Break Clause Issues</h3>
+                <div class="mt-5 space-y-4 text-sm leading-relaxed text-muted">
+                  <p>
+                    Many leases include a break clause which may favour either the landlord, the tenant or both for differing reasons. The successful exercise of a break option usually depends on fulfilling certain conditions and invariably the party exercising such break has one opportunity per break to get it right.
+                  </p>
+                  <p>
+                    Our experience in such matters will assist clients in extracting additional value from their lease interest.
+                  </p>
+                </div>
+                <a href="#contact" class="mt-7 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  Learn More <i data-feather="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+          <!-- Expert Witness/Dispute Resolution -->
+          <article class="sq border bg-white overflow-hidden svc-row reveal">
+            <div class="grid lg:grid-cols-5">
+              <div class="lg:col-span-2">
+                <div class="h-[220px] sm:h-[260px] lg:h-[320px]">
+                  <img
+                    src="https://images.unsplash.com/photo-1605561202544-b77ba4584114?q=80&w=1631&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                    alt="Professional discussion and advisory context."
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+              </div>
+              <div class="lg:col-span-3 p-7 sm:p-10">
+                <h3 class="text-2xl font-semibold tracking-tight">Expert Witness/Dispute Resolution</h3>
+                <p class="mt-5 text-sm leading-relaxed text-muted">
+                  If a landlord and tenant are unable to agree on a revised rental at review, the lease will invariably provide for the rental dispute to be referred to a third-party surveyor (Arbitrator or Independent Expert). We have considerable knowledge and experience in acting as an Expert Witness and in preparing valuation reports and replies for consideration by a third party surveyor
+                </p>
+                <a href="#contact" class="mt-7 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  Learn More <i data-feather="arrow-right" class="w-4 h-4"></i>
+                </a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT (cleaner: one slim info bar + form; less clutter) -->
+    <section id="contact" class="py-16 md:py-20">
+      <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
+
+        <div class="reveal max-w-3xl">
+          <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Contact</p>
+          <h2 class="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">A no obligation conversation, in confidence.</h2>
+          <p class="mt-5 text-muted leading-relaxed">
+            Please complete the form and one of our specialists will contact you in the strictest confidence.
+          </p>
+        </div>
+
+<!-- slim professional info bar (improved with symbols) -->
+<div class="mt-8 sq border border-line bg-paper px-6 py-5 reveal">
+  <div class="grid md:grid-cols-3 gap-5 text-sm">
+    <!-- Address -->
+    <div class="flex items-start gap-3 text-muted leading-relaxed">
+      <span class="mt-0.5 inline-flex items-center justify-center w-9 h-9 sq border border-line bg-white">
+        <i data-feather="map-pin" class="w-4 h-4 text-ink"></i>
+      </span>
+      <div>
+        <p class="text-ink font-semibold">T1 Asset Management</p>
+        <p class="mt-1">Unit 19 Holly Park Mills, Calverley, Leeds, LS28 5QS</p>
+      </div>
+    </div>
+
+    <!-- Telephone -->
+    <div class="flex items-start gap-3 md:justify-center">
+      <span class="mt-0.5 inline-flex items-center justify-center w-9 h-9 sq border border-line bg-white">
+        <i data-feather="phone" class="w-4 h-4 text-ink"></i>
+      </span>
+      <div class="text-muted">
+        <p class="text-[11px] uppercase tracking-[0.22em]">Telephone</p>
+        <a href="tel:07912222905" class="mt-1 inline-block font-semibold text-ink hover:underline underline-offset-4">
+          0791 2222 905
+        </a>
+      </div>
+    </div>
+
+    <!-- Email -->
+    <div class="flex items-start gap-3 md:justify-end">
+      <span class="mt-0.5 inline-flex items-center justify-center w-9 h-9 sq border border-line bg-white">
+        <i data-feather="mail" class="w-4 h-4 text-ink"></i>
+      </span>
+      <div class="text-muted md:text-right">
+        <p class="text-[11px] uppercase tracking-[0.22em]">Email</p>
+        <a href="mailto:rob@t1assetmanagement.co.uk" class="mt-1 inline-block font-semibold text-ink hover:underline underline-offset-4">
+          rob@t1assetmanagement.co.uk
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+        <!-- form -->
+        <div class="mt-8 sq border border-line bg-white p-8 sm:p-10 shadow-soft reveal">
+          <form class="space-y-4" onsubmit="event.preventDefault(); alert('Thanks — we will be in touch shortly.');">
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium">First Name <span class="text-muted">(required)</span></label>
+                <input type="text" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="First Name" />
+              </div>
+              <div>
+                <label class="block text-sm font-medium">Last Name <span class="text-muted">(required)</span></label>
+                <input type="text" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Last Name" />
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
+                <label class="block text-sm font-medium">Phone</label>
+                <input type="tel" class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="07..." />
+              </div>
+              <div>
+                <label class="block text-sm font-medium">Email <span class="text-muted">(required)</span></label>
+                <input type="email" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Email" />
+              </div>
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium">Message</label>
+              <textarea rows="5" class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Tell us what you need help with..."></textarea>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3">
+              <button type="submit" class="flex-1 inline-flex items-center justify-center px-6 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
+                Send <i data-feather="send" class="ml-2 w-4 h-4"></i>
+              </button>
+              <button type="button" data-open-callback class="flex-1 inline-flex items-center justify-center px-6 py-3 sq border border-line text-sm font-semibold hover:bg-gray-50 transition">
+                Request a call back
+              </button>
+            </div>
+
+            <p class="text-xs text-muted leading-relaxed">
+              By submitting this form, you consent to be contacted by T1 Asset Management regarding your enquiry.
+            </p>
+          </form>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white">
+      <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24 py-14">
+        <div class="grid md:grid-cols-4 gap-10 reveal">
+          <div>
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/601fd0787b0ff91513ebe340/a4fbaec7-8c0d-427b-9f85-bc15ee43844e/Monochrome+on+Transparent.png?format=1500w"
+              alt="T1 Asset Management"
+              class="h-10 w-auto"
+              loading="lazy"
+            />
+            <p class="mt-4 text-sm text-white/70 leading-relaxed max-w-sm">
+              Independent commercial property advice across Yorkshire and the UK.
+            </p>
+          </div>
+
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Company</p>
+            <ul class="mt-4 space-y-2 text-sm">
+              <li><a class="text-white/80 hover:text-white transition" href="#services">Professional Services</a></li>
+              <li><a class="text-white/80 hover:text-white transition" href="#contact">Contact</a></li>
+              <li><button data-open-callback class="text-left text-white/80 hover:text-white transition">Request a call back</button></li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Office</p>
+            <div class="mt-4 space-y-2 text-sm text-white/70">
+              <p>Unit 19 Holly Park Mills</p>
+              <p>Calverley</p>
+              <p>Leeds</p>
+              <p>LS28 5QS</p>
+            </div>
+          </div>
+
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Legal</p>
+            <ul class="mt-4 space-y-2 text-sm">
+              <li><a href="#" class="text-white/80 hover:text-white transition">Privacy Policy</a></li>
+              <li><a href="#" class="text-white/80 hover:text-white transition">Terms of use</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-white/15 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between reveal">
+          <p class="text-sm text-white/60">© <span id="year"></span> T1 Asset Management. All rights reserved.</p>
+          <div class="flex gap-6 text-sm">
+            <a href="#" class="text-white/60 hover:text-white transition">Privacy Policy</a>
+            <a href="#" class="text-white/60 hover:text-white transition">Terms of use</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- CALLBACK MODAL -->
+  <div id="callbackModal" class="fixed inset-0 z-[80] hidden">
+    <div class="absolute inset-0 bg-black/60"></div>
+
+    <div class="relative h-full flex items-center justify-center p-4">
+      <div class="sq w-full max-w-lg bg-white border border-line shadow-crisp">
+        <div class="p-6 border-b border-line flex items-center justify-between">
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Request a call back</p>
+            <h3 class="mt-1 text-lg font-semibold">No obligation chat</h3>
+          </div>
+          <button type="button" data-close-callback class="p-2 sq border border-line hover:bg-gray-50 transition" aria-label="Close">
+            <i data-feather="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div class="p-6">
+          <p class="text-sm text-muted leading-relaxed">
+            Leave your name and number and we’ll call you to discuss how we can help.
+          </p>
+
+          <form class="mt-5 space-y-4" onsubmit="event.preventDefault(); closeCallback(); alert('Thanks — we will call you back shortly.');">
+            <div>
+              <label class="block text-sm font-medium">Name</label>
+              <input type="text" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Your name" />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium">Phone number</label>
+              <input type="tel" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="07..." />
+            </div>
+
+            <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
+              Call me back <i data-feather="phone-call" class="ml-2 w-4 h-4"></i>
+            </button>
+
+            <button type="button" data-close-callback class="w-full inline-flex items-center justify-center px-6 py-3 sq border border-line text-sm font-semibold hover:bg-gray-50 transition">
+              Close
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    feather.replace();
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile menu
+    const menuBtn = document.getElementById("menuBtn");
+    const menuDrawer = document.getElementById("menuDrawer");
+    const menuBackdrop = document.getElementById("menuBackdrop");
+
+    function setMenuIcon(open){
+      menuBtn.innerHTML = open
+        ? '<i data-feather="x" class="w-5 h-5"></i>'
+        : '<i data-feather="menu" class="w-5 h-5"></i>';
+      feather.replace();
+    }
+    function openMenu(){
+      menuDrawer.classList.add("open");
+      menuBackdrop.classList.add("open");
+      document.body.classList.add("no-scroll");
+      menuBtn.setAttribute("aria-expanded", "true");
+      setMenuIcon(true);
+    }
+    function closeMenu(){
+      menuDrawer.classList.remove("open");
+      menuBackdrop.classList.remove("open");
+      document.body.classList.remove("no-scroll");
+      menuBtn.setAttribute("aria-expanded", "false");
+      setMenuIcon(false);
+    }
+    function isOpen(){ return menuDrawer.classList.contains("open"); }
+
+    menuBtn.addEventListener("click", () => { isOpen() ? closeMenu() : openMenu(); });
+    menuBackdrop.addEventListener("click", closeMenu);
+    document.querySelectorAll("[data-close-menu]").forEach(el => el.addEventListener("click", closeMenu));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && isOpen()) closeMenu(); });
+    window.addEventListener("resize", () => { if (window.innerWidth >= 768 && isOpen()) closeMenu(); });
+
+    // Callback modal
+    const modal = document.getElementById("callbackModal");
+    function openCallback() {
+      closeMenu();
+      modal.classList.remove("hidden");
+      document.body.classList.add("overflow-hidden");
+      feather.replace();
+    }
+    function closeCallback() {
+      modal.classList.add("hidden");
+      document.body.classList.remove("overflow-hidden");
+    }
+    window.closeCallback = closeCallback;
+
+    document.querySelectorAll("[data-open-callback]").forEach(btn => btn.addEventListener("click", openCallback));
+    document.querySelectorAll("[data-close-callback]").forEach(btn => btn.addEventListener("click", closeCallback));
+    modal.addEventListener("click", (e) => { if (e.target === modal.firstElementChild) closeCallback(); });
+
+    // Fade-in on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -10% 0px" });
+
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+  </script>
+</body>
+</html>
