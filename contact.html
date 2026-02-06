@@ -9,12 +9,13 @@
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="/t1asset/contact" />
 
-  <!-- ✅ Favicons (GitHub Pages project path: /t1asset/...) -->
-  <link rel="icon" type="image/x-icon" href="/t1asset/favicon-files/favicon.ico">
+  <!-- ✅ Favicons (GitHub Pages project path: /t1asset/) -->
+  <link rel="icon" href="/t1asset/favicon-files/favicon.ico" sizes="any">
   <link rel="icon" type="image/png" sizes="32x32" href="/t1asset/favicon-files/favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="/t1asset/favicon-files/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/t1asset/favicon-files/apple-touch-icon.png">
   <link rel="manifest" href="/t1asset/favicon-files/site.webmanifest">
+  <meta name="theme-color" content="#0B1220">
 
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -279,7 +280,7 @@
 
   <main>
 
-    <!-- HERO (ONLY title + two buttons) -->
+    <!-- HERO -->
     <section class="relative overflow-hidden">
       <div class="relative hero-overlay">
         <img
@@ -337,7 +338,6 @@
           </p>
         </div>
 
-        <!-- improved spacing info cards -->
         <div class="mt-10 grid md:grid-cols-3 gap-4 reveal">
           <div class="sq border bg-white p-7 info-card">
             <div class="flex items-start gap-4">
@@ -403,27 +403,31 @@
         </div>
 
         <div class="mt-8 sq border border-line bg-white p-8 sm:p-10 shadow-soft reveal">
-          <!-- NOTE: swap to Formspree later if you want this page connected too -->
-          <form class="space-y-4" onsubmit="event.preventDefault(); alert('Thanks — we will be in touch shortly.');">
+          <!-- ✅ Formspree -->
+          <form id="contactForm" action="https://formspree.io/f/xgoleoed" method="POST" class="space-y-4">
+            <input type="hidden" name="_subject" value="New website enquiry — T1 Asset Management" />
+            <input type="hidden" name="form_type" value="contact_page_enquiry" />
+            <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+
             <div class="grid sm:grid-cols-2 gap-4">
               <div>
                 <label class="block text-sm font-medium">First Name <span class="text-muted">(required)</span></label>
-                <input type="text" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="First Name" />
+                <input type="text" name="first_name" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="First Name" autocomplete="given-name" />
               </div>
               <div>
                 <label class="block text-sm font-medium">Last Name <span class="text-muted">(required)</span></label>
-                <input type="text" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Last Name" />
+                <input type="text" name="last_name" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Last Name" autocomplete="family-name" />
               </div>
             </div>
 
             <div class="grid sm:grid-cols-2 gap-4">
               <div>
                 <label class="block text-sm font-medium">Email <span class="text-muted">(required)</span></label>
-                <input type="email" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="you@company.com" />
+                <input type="email" name="email" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="you@company.com" autocomplete="email" />
               </div>
               <div>
                 <label class="block text-sm font-medium">Type of property</label>
-                <select class="mt-2 w-full sq px-4 py-3 text-sm f-in">
+                <select name="property_type" class="mt-2 w-full sq px-4 py-3 text-sm f-in">
                   <option value="">Select an option</option>
                   <option>Retail</option>
                   <option>Restaurant / Leisure</option>
@@ -437,22 +441,24 @@
 
             <div>
               <label class="block text-sm font-medium">Postcode of premises</label>
-              <input type="text" class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="e.g. LS1 2AB" />
+              <input type="text" name="postcode" class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="e.g. LS1 2AB" autocomplete="postal-code" />
             </div>
 
             <div>
               <label class="block text-sm font-medium">Any other notes?</label>
-              <textarea rows="5" class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Briefly describe your enquiry..."></textarea>
+              <textarea name="message" rows="5" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Briefly describe your enquiry..."></textarea>
             </div>
 
             <div class="flex flex-col sm:flex-row gap-3">
-              <button type="submit" class="flex-1 inline-flex items-center justify-center px-6 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
+              <button type="submit" id="contactSubmit" class="flex-1 inline-flex items-center justify-center px-6 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
                 Send <i data-feather="send" class="ml-2 w-4 h-4"></i>
               </button>
               <button type="button" data-open-callback class="flex-1 inline-flex items-center justify-center px-6 py-3 sq border border-line text-sm font-semibold hover:bg-gray-50 transition">
                 Request a call back
               </button>
             </div>
+
+            <p id="formStatus" class="text-xs text-muted leading-relaxed hidden"></p>
 
             <p class="text-xs text-muted leading-relaxed">
               By submitting this form, you consent to be contacted by T1 Asset Management regarding your enquiry.
@@ -539,24 +545,30 @@
             Leave your name and number and we’ll call you to discuss how we can help.
           </p>
 
-          <form class="mt-5 space-y-4" onsubmit="event.preventDefault(); closeCallback(); alert('Thanks — we will call you back shortly.');">
+          <form id="callbackForm" action="https://formspree.io/f/xgoleoed" method="POST" class="mt-5 space-y-4">
+            <input type="hidden" name="_subject" value="Callback request — T1 Asset Management" />
+            <input type="hidden" name="form_type" value="callback_request" />
+            <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+
             <div>
               <label class="block text-sm font-medium">Name</label>
-              <input type="text" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Your name" />
+              <input type="text" name="name" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Your name" />
             </div>
 
             <div>
               <label class="block text-sm font-medium">Phone number</label>
-              <input type="tel" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="07..." />
+              <input type="tel" name="phone" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="07..." />
             </div>
 
-            <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
+            <button type="submit" id="callbackSubmit" class="w-full inline-flex items-center justify-center px-6 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
               Call me back <i data-feather="phone-call" class="ml-2 w-4 h-4"></i>
             </button>
 
             <button type="button" data-close-callback class="w-full inline-flex items-center justify-center px-6 py-3 sq border border-line text-sm font-semibold hover:bg-gray-50 transition">
               Close
             </button>
+
+            <p id="callbackStatus" class="text-xs text-muted leading-relaxed hidden"></p>
           </form>
         </div>
       </div>
@@ -600,7 +612,7 @@
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && isOpen()) closeMenu(); });
     window.addEventListener("resize", () => { if (window.innerWidth >= 768 && isOpen()) closeMenu(); });
 
-    // Callback modal
+    // Callback modal open/close
     const modal = document.getElementById("callbackModal");
     function openCallback() {
       closeMenu();
@@ -618,7 +630,7 @@
     document.querySelectorAll("[data-close-callback]").forEach(btn => btn.addEventListener("click", closeCallback));
     modal.addEventListener("click", (e) => { if (e.target === modal.firstElementChild) closeCallback(); });
 
-    // ✅ Rent Reviews dropdown: hover-intent + stays open reliably (bridge + close delay + ESC/outside click)
+    // ✅ Rent Reviews dropdown: hover-intent + stays open reliably
     (function () {
       const btn = document.getElementById("rentBtn");
       const menu = document.getElementById("rentMenu");
@@ -626,45 +638,41 @@
 
       let closeT = null;
 
-      function openMenu() {
+      function openDD() {
         if (closeT) { clearTimeout(closeT); closeT = null; }
         menu.classList.add("open");
         btn.setAttribute("aria-expanded", "true");
       }
 
-      function closeMenu() {
+      function closeDD() {
         menu.classList.remove("open");
         btn.setAttribute("aria-expanded", "false");
       }
 
       function scheduleClose() {
         if (closeT) clearTimeout(closeT);
-        closeT = setTimeout(closeMenu, 220); // small delay prevents accidental close
+        closeT = setTimeout(closeDD, 220);
       }
 
-      // Hover open/close with intent
-      btn.addEventListener("mouseenter", openMenu);
-      menu.addEventListener("mouseenter", openMenu);
+      btn.addEventListener("mouseenter", openDD);
+      menu.addEventListener("mouseenter", openDD);
 
       btn.addEventListener("mouseleave", scheduleClose);
       menu.addEventListener("mouseleave", scheduleClose);
 
-      // Click also toggles (nice fallback)
       btn.addEventListener("click", (e) => {
         e.preventDefault();
         const isOpen = menu.classList.contains("open");
-        if (isOpen) closeMenu(); else openMenu();
+        if (isOpen) closeDD(); else openDD();
       });
 
-      // Close on outside click
       document.addEventListener("click", (e) => {
         const within = btn.contains(e.target) || menu.contains(e.target);
-        if (!within) closeMenu();
+        if (!within) closeDD();
       });
 
-      // Close on ESC
       document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeMenu();
+        if (e.key === "Escape") closeDD();
       });
     })();
 
@@ -677,8 +685,86 @@
         }
       });
     }, { threshold: 0.12, rootMargin: "0px 0px -10% 0px" });
-
     document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    // ✅ Formspree AJAX submit (Contact)
+    (function () {
+      const form = document.getElementById("contactForm");
+      const btn = document.getElementById("contactSubmit");
+      const status = document.getElementById("formStatus");
+      if (!form) return;
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        status.classList.remove("hidden");
+        status.textContent = "Sending…";
+        btn.disabled = true;
+        btn.classList.add("opacity-60");
+
+        try {
+          const formData = new FormData(form);
+          const res = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" }
+          });
+
+          if (res.ok) {
+            form.reset();
+            status.textContent = "Thanks — we will be in touch shortly.";
+          } else {
+            status.textContent = "Sorry — something went wrong. Please try again or email rob@t1assetmanagement.co.uk.";
+          }
+        } catch (err) {
+          status.textContent = "Sorry — something went wrong. Please try again or email rob@t1assetmanagement.co.uk.";
+        } finally {
+          btn.disabled = false;
+          btn.classList.remove("opacity-60");
+          if (window.feather) window.feather.replace();
+        }
+      });
+    })();
+
+    // ✅ Formspree AJAX submit (Callback modal)
+    (function () {
+      const form = document.getElementById("callbackForm");
+      const btn = document.getElementById("callbackSubmit");
+      const status = document.getElementById("callbackStatus");
+      if (!form) return;
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        status.classList.remove("hidden");
+        status.textContent = "Sending…";
+        btn.disabled = true;
+        btn.classList.add("opacity-60");
+
+        try {
+          const formData = new FormData(form);
+          const res = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" }
+          });
+
+          if (res.ok) {
+            form.reset();
+            status.textContent = "Thanks — we will call you back shortly.";
+            setTimeout(() => { closeCallback(); }, 900);
+          } else {
+            status.textContent = "Sorry — something went wrong. Please try again.";
+          }
+        } catch (err) {
+          status.textContent = "Sorry — something went wrong. Please try again.";
+        } finally {
+          btn.disabled = false;
+          btn.classList.remove("opacity-60");
+          if (window.feather) window.feather.replace();
+        }
+      });
+    })();
   </script>
 </body>
 </html>
