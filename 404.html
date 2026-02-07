@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Page Not Found | T1 Asset Management</title>
+  <meta name="description" content="Sorry — we can’t find that page. Return to T1 Asset Management’s homepage or contact us for help." />
+  <meta name="robots" content="noindex,follow" />
+  <link rel="canonical" href="/t1asset/404" />
+
+  <!-- Font -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Feather Icons -->
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  <style>
+    html { scroll-behavior: smooth; }
+    body{
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans";
+    }
+
+    /* Squared system */
+    .sq { border-radius: 0 !important; }
+
+    /* Fade-in on scroll */
+    .reveal{
+      opacity:0;
+      transform:translateY(10px);
+      transition:opacity 700ms ease, transform 700ms ease;
+      will-change:opacity, transform;
+    }
+    .reveal.is-visible{ opacity:1; transform:translateY(0); }
+
+    /* Premium separator */
+    .hairline{ height:1px; background: rgba(2,6,23,.08); }
+
+    /* Mobile menu overlay */
+    .menu-backdrop{
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.35);
+      opacity: 0; pointer-events: none;
+      transition: opacity 180ms ease;
+      z-index: 60;
+    }
+    .menu-backdrop.open{ opacity: 1; pointer-events: auto; }
+
+    .menu-drawer{
+      position: fixed;
+      top: 72px;
+      left: 0; right: 0;
+      background: #fff;
+      border-top: 1px solid #E5E7EB;
+      transform: translateY(-10px);
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 180ms ease, transform 180ms ease;
+      z-index: 70;
+    }
+    .menu-drawer.open{
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .no-scroll { overflow: hidden; }
+
+    /* Desktop dropdown */
+    .nav-dd{ position: relative; }
+    .nav-dd-panel{
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 260px;
+      background: #fff;
+      border: 1px solid rgba(2,6,23,.10);
+      box-shadow: 0 10px 24px rgba(2, 6, 23, 0.08);
+      z-index: 80;
+      opacity: 0;
+      transform: translateX(-50%) translateY(-6px);
+      pointer-events: none;
+      transition: opacity 140ms ease, transform 140ms ease;
+    }
+    .nav-dd-panel.open{
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+    .nav-dd::after{
+      content:"";
+      position:absolute;
+      left:-12px; right:-12px;
+      top:100%;
+      height:18px;
+    }
+
+    /* Inputs */
+    .f-in{
+      transition: box-shadow 200ms ease, border-color 200ms ease, background-color 200ms ease;
+      border: 1px solid rgba(2,6,23,.12);
+      background: #fff;
+    }
+    .f-in:focus{
+      border-color: rgba(2,6,23,.55);
+      box-shadow: 0 0 0 4px rgba(2,6,23,.08);
+      outline: none;
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#0B1220",
+            muted: "#6B7280",
+            paper: "#FAFAFA",
+            line: "#E5E7EB"
+          },
+          boxShadow: {
+            soft: "0 10px 24px rgba(2, 6, 23, 0.08)",
+            crisp: "0 10px 20px rgba(2, 6, 23, 0.10)"
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body class="bg-white text-ink antialiased">
+
+  <!-- NAV -->
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-black/5">
+    <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
+      <div class="h-[72px] flex items-center justify-between">
+        <a href="/t1asset/index.html" class="flex items-center">
+          <img
+            src="https://image2url.com/r2/default/images/1769712235293-23883a5d-b00b-4d78-a5ae-45edd6e11829.png"
+            alt="T1 Asset Management"
+            class="h-10 w-auto"
+            loading="eager"
+          />
+        </a>
+
+        <nav class="hidden md:flex items-center gap-10 text-[13px] tracking-wide">
+          <a href="/t1asset/index.html" class="text-ink/80 hover:text-ink transition">Home</a>
+
+          <!-- Rent Reviews dropdown -->
+          <div class="nav-dd">
+            <button
+              type="button"
+              id="rentBtn"
+              class="inline-flex items-center gap-2 text-ink/80 hover:text-ink transition"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="rentMenu"
+            >
+              Rent Reviews <i data-feather="chevron-down" class="w-4 h-4"></i>
+            </button>
+
+            <div id="rentMenu" class="nav-dd-panel sq" role="menu" aria-label="Rent Reviews submenu">
+              <a href="/t1asset/rent-reviews-tenants-leeds" class="block px-4 py-3 text-sm hover:bg-gray-50" role="menuitem">
+                Tenants
+              </a>
+              <a href="/t1asset/rent-reviews-landlords-leeds" class="block px-4 py-3 text-sm hover:bg-gray-50" role="menuitem">
+                Landlords
+              </a>
+            </div>
+          </div>
+
+          <a href="/t1asset/professional-services" class="text-ink/80 hover:text-ink transition">Other Services</a>
+          <a href="/t1asset/contact" class="text-ink/80 hover:text-ink transition">Contact</a>
+        </nav>
+
+        <div class="flex items-center gap-3">
+          <a href="/t1asset/contact#form" class="hidden sm:inline-flex px-5 py-[10px] sq border border-line text-[13px] font-medium hover:bg-gray-50 transition">
+            Enquiry
+          </a>
+
+          <button type="button" data-open-callback class="hidden sm:inline-flex px-5 py-[10px] sq bg-ink text-white text-[13px] font-semibold hover:bg-black transition">
+            Request a call back
+          </button>
+
+          <button
+            type="button"
+            id="menuBtn"
+            class="md:hidden inline-flex items-center justify-center w-10 h-10 sq border border-line hover:bg-gray-50 transition"
+            aria-label="Open menu"
+            aria-expanded="false"
+          >
+            <i data-feather="menu" class="w-5 h-5"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Mobile menu overlay -->
+  <div id="menuBackdrop" class="menu-backdrop md:hidden" aria-hidden="true"></div>
+
+  <div id="menuDrawer" class="menu-drawer md:hidden" role="dialog" aria-modal="true" aria-label="Mobile menu">
+    <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24 py-4">
+      <nav class="flex flex-col text-sm">
+        <a href="/t1asset/index.html" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Home</a>
+        <a href="/t1asset/rent-reviews-tenants-leeds" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Rent Reviews — Tenants</a>
+        <a href="/t1asset/rent-reviews-landlords-leeds" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Rent Reviews — Landlords</a>
+        <a href="/t1asset/professional-services" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Other Services</a>
+        <a href="/t1asset/contact" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Contact</a>
+
+        <button
+          type="button"
+          data-open-callback
+          data-close-menu
+          class="mt-3 w-full sq bg-ink text-white font-semibold px-4 py-3 text-left hover:bg-black transition"
+        >
+          Request a call back
+        </button>
+      </nav>
+    </div>
+  </div>
+
+  <main>
+
+    <!-- 404 HERO -->
+    <section class="py-16 md:py-24 bg-paper">
+      <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
+        <div class="grid lg:grid-cols-12 gap-10 items-start">
+          <div class="lg:col-span-7 reveal">
+            <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Error 404</p>
+            <h1 class="mt-4 text-4xl md:text-6xl font-semibold tracking-tight">
+              Page not found.
+            </h1>
+            <p class="mt-5 text-muted leading-relaxed max-w-xl">
+              The page you’re looking for doesn’t exist, may have moved, or the link may be incorrect.
+              Use the buttons below to get back on track.
+            </p>
+
+            <div class="mt-8 flex flex-col sm:flex-row gap-3">
+              <a href="/t1asset/index.html" class="inline-flex items-center justify-center px-6 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
+                Back to homepage <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+              </a>
+              <a href="/t1asset/contact" class="inline-flex items-center justify-center px-6 py-3 sq border border-line text-sm font-semibold hover:bg-gray-50 transition">
+                Contact us
+              </a>
+            </div>
+
+            <div class="mt-10 hairline"></div>
+
+            <div class="mt-6 flex flex-wrap gap-3 text-sm">
+              <a href="/t1asset/rent-reviews-tenants-leeds" class="inline-flex items-center gap-2 px-4 py-2 sq border border-line bg-white hover:bg-gray-50 transition">
+                <i data-feather="minus-circle" class="w-4 h-4"></i> Rent Reviews (Tenants)
+              </a>
+              <a href="/t1asset/rent-reviews-landlords-leeds" class="inline-flex items-center gap-2 px-4 py-2 sq border border-line bg-white hover:bg-gray-50 transition">
+                <i data-feather="plus-circle" class="w-4 h-4"></i> Rent Reviews (Landlords)
+              </a>
+              <a href="/t1asset/professional-services" class="inline-flex items-center gap-2 px-4 py-2 sq border border-line bg-white hover:bg-gray-50 transition">
+                <i data-feather="grid" class="w-4 h-4"></i> Other Services
+              </a>
+            </div>
+          </div>
+
+          <!-- RIGHT: quick search + contact mini -->
+          <aside class="lg:col-span-5 reveal">
+            <div class="sq border border-line bg-white p-8 sm:p-10 shadow-soft">
+              <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Quick help</p>
+              <h2 class="mt-3 text-2xl font-semibold tracking-tight">Find what you need</h2>
+              <p class="mt-3 text-sm text-muted leading-relaxed">
+                Try a search, or send a quick enquiry and we’ll point you in the right direction.
+              </p>
+
+              <form class="mt-6 space-y-4" onsubmit="event.preventDefault(); siteSearch();">
+                <div>
+                  <label class="block text-sm font-medium">Search</label>
+                  <div class="mt-2 flex gap-2">
+                    <input id="q" type="text" class="w-full sq px-4 py-3 text-sm f-in" placeholder="e.g. rent review, lease renewal…" />
+                    <button type="submit" class="px-4 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
+                      <i data-feather="search" class="w-4 h-4"></i>
+                    </button>
+                  </div>
+                  <p class="mt-2 text-xs text-muted">Search opens in a new tab.</p>
+                </div>
+
+                <div class="hairline"></div>
+
+                <div class="grid sm:grid-cols-2 gap-4 text-sm">
+                  <div class="text-muted">
+                    <p class="text-[11px] uppercase tracking-[0.22em]">Telephone</p>
+                    <a href="tel:07912222905" class="mt-1 inline-block font-semibold text-ink hover:underline underline-offset-4">
+                      0791 2222 905
+                    </a>
+                  </div>
+                  <div class="text-muted sm:text-right">
+                    <p class="text-[11px] uppercase tracking-[0.22em]">Email</p>
+                    <a href="mailto:rob@t1assetmanagement.co.uk" class="mt-1 inline-block font-semibold text-ink hover:underline underline-offset-4 break-all">
+                      rob@t1assetmanagement.co.uk
+                    </a>
+                  </div>
+                </div>
+
+                <a href="/t1asset/contact#form" class="inline-flex items-center justify-center w-full px-6 py-3 sq border border-line text-sm font-semibold hover:bg-gray-50 transition">
+                  Send an enquiry <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                </a>
+              </form>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-black text-white">
+      <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24 py-14">
+        <div class="grid md:grid-cols-4 gap-10 reveal">
+          <div>
+            <img
+              src="https://images.squarespace-cdn.com/content/v1/601fd0787b0ff91513ebe340/a4fbaec7-8c0d-427b-9f85-bc15ee43844e/Monochrome+on+Transparent.png?format=1500w"
+              alt="T1 Asset Management"
+              class="h-10 w-auto"
+              loading="lazy"
+            />
+            <p class="mt-4 text-sm text-white/70 leading-relaxed max-w-sm">
+              Independent commercial property advice across Yorkshire and the UK.
+            </p>
+          </div>
+
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Services</p>
+            <ul class="mt-4 space-y-2 text-sm">
+              <li><a class="text-white/80 hover:text-white transition" href="/t1asset/professional-services">Professional Services</a></li>
+              <li><a class="text-white/80 hover:text-white transition" href="/t1asset/contact">Contact</a></li>
+              <li><button data-open-callback class="text-left text-white/80 hover:text-white transition">Request a call back</button></li>
+            </ul>
+          </div>
+
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Office</p>
+            <div class="mt-4 space-y-2 text-sm text-white/70">
+              <p>Unit 19 Holly Park Mills</p>
+              <p>Calverley</p>
+              <p>Leeds</p>
+              <p>LS28 5QS</p>
+            </div>
+          </div>
+
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Legal</p>
+            <ul class="mt-4 space-y-2 text-sm">
+              <li><a href="/t1asset/privacy-policy" class="text-white/80 hover:text-white transition">Privacy Policy</a></li>
+              <li><a href="/t1asset/terms" class="text-white/80 hover:text-white transition">Terms of use</a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-12 pt-8 border-t border-white/15 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between reveal">
+          <p class="text-sm text-white/60">© <span id="year"></span> T1 Asset Management. All rights reserved.</p>
+          <div class="flex gap-6 text-sm">
+            <a href="/t1asset/privacy-policy" class="text-white/60 hover:text-white transition">Privacy Policy</a>
+            <a href="/t1asset/terms" class="text-white/60 hover:text-white transition">Terms of use</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+  </main>
+
+  <!-- CALLBACK MODAL -->
+  <div id="callbackModal" class="fixed inset-0 z-[80] hidden">
+    <div class="absolute inset-0 bg-black/60"></div>
+
+    <div class="relative h-full flex items-center justify-center p-4">
+      <div class="sq w-full max-w-lg bg-white border border-line shadow-crisp">
+        <div class="p-6 border-b border-line flex items-center justify-between">
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Request a call back</p>
+            <h3 class="mt-1 text-lg font-semibold">No obligation chat</h3>
+          </div>
+          <button type="button" data-close-callback class="p-2 sq border border-line hover:bg-gray-50 transition" aria-label="Close">
+            <i data-feather="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <div class="p-6">
+          <p class="text-sm text-muted leading-relaxed">
+            Leave your name and number and we’ll call you to discuss how we can help.
+          </p>
+
+          <form class="mt-5 space-y-4" onsubmit="event.preventDefault(); closeCallback(); alert('Thanks — we will call you back shortly.');">
+            <div>
+              <label class="block text-sm font-medium">Name</label>
+              <input type="text" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Your name" />
+            </div>
+
+            <div>
+              <label class="block text-sm font-medium">Phone number</label>
+              <input type="tel" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="07..." />
+            </div>
+
+            <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
+              Call me back <i data-feather="phone-call" class="ml-2 w-4 h-4"></i>
+            </button>
+
+            <button type="button" data-close-callback class="w-full inline-flex items-center justify-center px-6 py-3 sq border border-line text-sm font-semibold hover:bg-gray-50 transition">
+              Close
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    feather.replace();
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // Mobile menu
+    const menuBtn = document.getElementById("menuBtn");
+    const menuDrawer = document.getElementById("menuDrawer");
+    const menuBackdrop = document.getElementById("menuBackdrop");
+
+    function setMenuIcon(open){
+      menuBtn.innerHTML = open
+        ? '<i data-feather="x" class="w-5 h-5"></i>'
+        : '<i data-feather="menu" class="w-5 h-5"></i>';
+      feather.replace();
+    }
+    function openMenu(){
+      menuDrawer.classList.add("open");
+      menuBackdrop.classList.add("open");
+      document.body.classList.add("no-scroll");
+      menuBtn.setAttribute("aria-expanded", "true");
+      setMenuIcon(true);
+    }
+    function closeMenu(){
+      menuDrawer.classList.remove("open");
+      menuBackdrop.classList.remove("open");
+      document.body.classList.remove("no-scroll");
+      menuBtn.setAttribute("aria-expanded", "false");
+      setMenuIcon(false);
+    }
+    function isOpen(){ return menuDrawer.classList.contains("open"); }
+
+    menuBtn.addEventListener("click", () => { isOpen() ? closeMenu() : openMenu(); });
+    menuBackdrop.addEventListener("click", closeMenu);
+    document.querySelectorAll("[data-close-menu]").forEach(el => el.addEventListener("click", closeMenu));
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" && isOpen()) closeMenu(); });
+    window.addEventListener("resize", () => { if (window.innerWidth >= 768 && isOpen()) closeMenu(); });
+
+    // Callback modal
+    const modal = document.getElementById("callbackModal");
+    function openCallback() {
+      closeMenu();
+      modal.classList.remove("hidden");
+      document.body.classList.add("overflow-hidden");
+      feather.replace();
+    }
+    function closeCallback() {
+      modal.classList.add("hidden");
+      document.body.classList.remove("overflow-hidden");
+    }
+    window.closeCallback = closeCallback;
+
+    document.querySelectorAll("[data-open-callback]").forEach(btn => btn.addEventListener("click", openCallback));
+    document.querySelectorAll("[data-close-callback]").forEach(btn => btn.addEventListener("click", closeCallback));
+    modal.addEventListener("click", (e) => { if (e.target === modal.firstElementChild) closeCallback(); });
+
+    // Fade-in on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("is-visible");
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12, rootMargin: "0px 0px -10% 0px" });
+    document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
+
+    // Rent Reviews dropdown (hover + click)
+    (function () {
+      const btn = document.getElementById("rentBtn");
+      const menu = document.getElementById("rentMenu");
+      if (!btn || !menu) return;
+
+      let closeT = null;
+
+      function openDD() {
+        if (closeT) { clearTimeout(closeT); closeT = null; }
+        menu.classList.add("open");
+        btn.setAttribute("aria-expanded", "true");
+      }
+
+      function closeDD() {
+        menu.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+      }
+
+      function scheduleClose() {
+        if (closeT) clearTimeout(closeT);
+        closeT = setTimeout(closeDD, 220);
+      }
+
+      btn.addEventListener("mouseenter", openDD);
+      menu.addEventListener("mouseenter", openDD);
+      btn.addEventListener("mouseleave", scheduleClose);
+      menu.addEventListener("mouseleave", scheduleClose);
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const isOpen = menu.classList.contains("open");
+        if (isOpen) closeDD(); else openDD();
+      });
+
+      document.addEventListener("click", (e) => {
+        const within = btn.contains(e.target) || menu.contains(e.target);
+        if (!within) closeDD();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeDD();
+      });
+    })();
+
+    // Simple site search (Google "site:" query)
+    function siteSearch(){
+      const q = document.getElementById("q").value.trim();
+      if(!q) return;
+      const query = encodeURIComponent(`site:t1assetmanagement.co.uk ${q}`);
+      window.open(`https://www.google.com/search?q=${query}`, "_blank", "noopener,noreferrer");
+    }
+  </script>
+</body>
+</html>
