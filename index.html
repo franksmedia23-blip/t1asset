@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+
+  <!-- ✅ Make iOS status bar/background WHITE like the Privacy page -->
+  <!-- Key changes:
+       - remove apple "black-translucent"
+       - set theme-color to white
+       - keep viewport-fit for safe area
+  -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
   <title>T1 Asset Management | Commercial Property Experts</title>
 
@@ -14,7 +21,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="/t1asset/favicon-files/favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="/t1asset/favicon-files/apple-touch-icon.png">
   <link rel="manifest" href="/t1asset/favicon-files/site.webmanifest">
-  <meta name="theme-color" content="#0B1220">
+  <meta name="theme-color" content="#FFFFFF">
 
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -31,6 +38,17 @@
     html { scroll-behavior: smooth; }
     body{
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans";
+    }
+
+    /* ✅ Ensure the top safe-area is white when using viewport-fit (iOS notch devices) */
+    body::before{
+      content:"";
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      height: env(safe-area-inset-top);
+      background: #fff;
+      z-index: 1000;
+      pointer-events: none;
     }
 
     /* Squared system */
@@ -99,7 +117,7 @@
     }
     .no-scroll { overflow: hidden; }
 
-    /* OUR APPROACH hover (slower / more noticeable) */
+    /* OUR APPROACH hover */
     .approach-card{
       transition: transform 520ms ease, box-shadow 520ms ease, border-color 520ms ease;
       border-color: rgba(2,6,23,.10);
@@ -160,13 +178,7 @@
       height:18px;
     }
 
-    /* =========================
-       ✅ SERVICES SLIDER (FIXED)
-       - No half-card at the end
-       - 1 card mobile, 2 cards tablet, 3 cards desktop
-       - Arrow click moves exactly ONE card
-       ========================= */
-
+    /* ✅ SERVICES SLIDER */
     :root { --svc-gap: 24px; }
 
     .svc-rail{
@@ -181,19 +193,19 @@
       display: flex;
       gap: var(--svc-gap);
       width: 100%;
-      padding-bottom: 8px; /* breathing room below shadows */
+      padding-bottom: 8px;
     }
 
     .svc-item{
       scroll-snap-align: start;
       scroll-snap-stop: always;
-      flex: 0 0 100%; /* mobile: 1 card */
+      flex: 0 0 100%;
     }
     @media (min-width: 768px){
-      .svc-item{ flex-basis: calc((100% - var(--svc-gap)) / 2); } /* tablet: 2 cards */
+      .svc-item{ flex-basis: calc((100% - var(--svc-gap)) / 2); }
     }
     @media (min-width: 1024px){
-      .svc-item{ flex-basis: calc((100% - (var(--svc-gap) * 2)) / 3); } /* desktop: 3 cards */
+      .svc-item{ flex-basis: calc((100% - (var(--svc-gap) * 2)) / 3); }
     }
 
     .svc-photoCard{
@@ -892,7 +904,7 @@
     document.querySelectorAll("[data-close-callback]").forEach(btn => btn.addEventListener("click", closeCallback));
     modal.addEventListener("click", (e) => { if (e.target === modal.firstElementChild) closeCallback(); });
 
-    // ✅ Rent Reviews dropdown
+    // ✅ Rent Reviews dropdown (desktop)
     (function () {
       const btn = document.getElementById("rentBtn");
       const menu = document.getElementById("rentMenu");
@@ -955,7 +967,6 @@
       const step = stepSize();
       const max = rail.scrollWidth - rail.clientWidth;
 
-      // current snap index
       const current = rail.scrollLeft;
       const idx = Math.round(current / step);
       const target = Math.min(max, Math.max(0, (idx + dir) * step));
@@ -978,7 +989,6 @@
 
     rail.addEventListener("scroll", () => requestAnimationFrame(updateDisabled));
     window.addEventListener("resize", () => {
-      // re-snap to nearest position after breakpoint changes so it never shows halves
       const step = stepSize();
       if(step > 0){
         const idx = Math.round(rail.scrollLeft / step);
