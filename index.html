@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
   <title>T1 Asset Management | Commercial Property Experts</title>
 
   <!-- ✅ Favicons (GitHub Pages project path: /t1asset/) -->
@@ -65,14 +68,6 @@
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-    /* Services scroller */
-    .svc-rail { scroll-snap-type: x mandatory; }
-    .svc-item { scroll-snap-align: start; }
-
-    /* Equal height */
-    .svc-card { height: 100%; display: flex; flex-direction: column; }
-    .svc-body { flex: 1; }
-
     .is-disabled { opacity: .35; cursor: not-allowed; }
 
     /* ✅ Mobile menu overlay */
@@ -104,9 +99,9 @@
     }
     .no-scroll { overflow: hidden; }
 
-    /* OUR APPROACH hover */
+    /* OUR APPROACH hover (slower / more noticeable) */
     .approach-card{
-      transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+      transition: transform 520ms ease, box-shadow 520ms ease, border-color 520ms ease;
       border-color: rgba(2,6,23,.10);
       will-change: transform;
     }
@@ -135,20 +130,7 @@
       outline: none;
     }
 
-    /* Subtle service card hover */
-    .svc-cardShell{
-      transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
-      border-color: rgba(2,6,23,.10);
-    }
-    @media (hover:hover) and (pointer:fine){
-      .svc-cardShell:hover{
-        background: rgba(2,6,23,.02);
-        border-color: rgba(2,6,23,.18);
-        transform: translateY(-2px);
-      }
-    }
-
-    /* ✅ Desktop dropdown (same as Contact) */
+    /* ✅ Desktop dropdown */
     .nav-dd{ position: relative; }
     .nav-dd-panel{
       position: absolute;
@@ -177,6 +159,66 @@
       top:100%;
       height:18px;
     }
+
+    /* =========================
+       ✅ SERVICES SLIDER (FIXED)
+       - No half-card at the end
+       - 1 card mobile, 2 cards tablet, 3 cards desktop
+       - Arrow click moves exactly ONE card
+       ========================= */
+
+    :root { --svc-gap: 24px; }
+
+    .svc-rail{
+      scroll-snap-type: x mandatory;
+      scroll-padding-left: 0px;
+      scroll-padding-right: 0px;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .svc-track{
+      display: flex;
+      gap: var(--svc-gap);
+      width: 100%;
+      padding-bottom: 8px; /* breathing room below shadows */
+    }
+
+    .svc-item{
+      scroll-snap-align: start;
+      scroll-snap-stop: always;
+      flex: 0 0 100%; /* mobile: 1 card */
+    }
+    @media (min-width: 768px){
+      .svc-item{ flex-basis: calc((100% - var(--svc-gap)) / 2); } /* tablet: 2 cards */
+    }
+    @media (min-width: 1024px){
+      .svc-item{ flex-basis: calc((100% - (var(--svc-gap) * 2)) / 3); } /* desktop: 3 cards */
+    }
+
+    .svc-photoCard{
+      border-color: rgba(2,6,23,.10);
+      transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
+      overflow: hidden;
+      background: #fff;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    @media (hover:hover) and (pointer:fine){
+      .svc-photoCard:hover{
+        background: rgba(2,6,23,.02);
+        border-color: rgba(2,6,23,.18);
+        transform: translateY(-2px);
+      }
+    }
+    .svc-photo{
+      height: 190px;
+      flex: 0 0 auto;
+    }
+    @media (min-width: 768px){
+      .svc-photo{ height: 210px; }
+    }
   </style>
 
   <script>
@@ -201,7 +243,7 @@
 </head>
 
 <body class="bg-white text-ink antialiased">
-  <!-- NAV (✅ now matches Contact page header) -->
+  <!-- NAV -->
   <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-black/5">
     <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
       <div class="h-[72px] flex items-center justify-between">
@@ -217,7 +259,6 @@
         <nav class="hidden md:flex items-center gap-10 text-[13px] tracking-wide">
           <a href="/t1asset/index.html" class="text-ink hover:text-ink transition">Home</a>
 
-          <!-- ✅ Rent Reviews dropdown -->
           <div class="nav-dd">
             <button
               type="button"
@@ -231,12 +272,8 @@
             </button>
 
             <div id="rentMenu" class="nav-dd-panel sq" role="menu" aria-label="Rent Reviews submenu">
-              <a href="/t1asset/rent-reviews-tenants" class="block px-4 py-3 text-sm hover:bg-gray-50" role="menuitem">
-                Tenants
-              </a>
-              <a href="/t1asset/rent-reviews-landlords" class="block px-4 py-3 text-sm hover:bg-gray-50" role="menuitem">
-                Landlords
-              </a>
+              <a href="/t1asset/rent-reviews-tenants" class="block px-4 py-3 text-sm hover:bg-gray-50" role="menuitem">Tenants</a>
+              <a href="/t1asset/rent-reviews-landlords" class="block px-4 py-3 text-sm hover:bg-gray-50" role="menuitem">Landlords</a>
             </div>
           </div>
 
@@ -279,12 +316,7 @@
         <a href="/t1asset/professional-services" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Other Services</a>
         <a href="/t1asset/contact.html" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Contact</a>
 
-        <button
-          type="button"
-          data-open-callback
-          data-close-menu
-          class="mt-3 w-full sq bg-ink text-white font-semibold px-4 py-3 text-left hover:bg-black transition"
-        >
+        <button type="button" data-open-callback data-close-menu class="mt-3 w-full sq bg-ink text-white font-semibold px-4 py-3 text-left hover:bg-black transition">
           Request a call back
         </button>
       </nav>
@@ -296,8 +328,8 @@
     <section class="relative overflow-hidden">
       <div class="relative hero-overlay">
         <img
-          src="https://images.squarespace-cdn.com/content/v1/601fd0787b0ff91513ebe340/1740835506656-1H4NUYBEC6M7QTAM1TKA/unsplash-image-muqrIzbDut0.jpg?format=2500w"
-          alt="Modern commercial property"
+          src="https://images.squarespace-cdn.com/content/v1/68e96700e97e214d978494dd/1760132451474-GNV97O11MCL2MVS92IMU/unsplash-image-OIc_-XMXF_s.jpg?format=2500w"
+          alt="About T1 Asset Management"
           class="w-full h-[72vh] min-h-[640px] md:h-[78vh] object-cover"
           loading="eager"
         />
@@ -322,13 +354,11 @@
                   </p>
 
                   <div class="mt-8 flex flex-col sm:flex-row gap-3">
-                    <a href="#contact"
-                       class="inline-flex items-center justify-center px-6 py-3 sq bg-white text-ink text-sm font-semibold hover:bg-gray-100 transition">
+                    <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 sq bg-white text-ink text-sm font-semibold hover:bg-gray-100 transition">
                       Speak to a surveyor <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
                     </a>
 
-                    <a href="/t1asset/professional-services"
-                       class="inline-flex items-center justify-center px-6 py-3 sq border border-white/30 text-white text-sm font-semibold hover:bg-white/10 transition">
+                    <a href="/t1asset/professional-services" class="inline-flex items-center justify-center px-6 py-3 sq border border-white/30 text-white text-sm font-semibold hover:bg-white/10 transition">
                       View professional services
                     </a>
                   </div>
@@ -354,13 +384,11 @@
               <h3 class="mt-2 text-lg font-semibold">Commercial lease events</h3>
               <p class="mt-2 text-sm text-muted">Rent reviews, renewals, breaks and dispute support.</p>
             </div>
-
             <div class="sq bg-white border border-line shadow-soft p-6 reveal">
               <p class="text-[11px] uppercase tracking-[0.25em] text-muted">Approach</p>
               <h3 class="mt-2 text-lg font-semibold">Evidence-led negotiation</h3>
               <p class="mt-2 text-sm text-muted">Clear strategy, robust comparables, disciplined execution.</p>
             </div>
-
             <div class="sq bg-white border border-line shadow-soft p-6 reveal">
               <p class="text-[11px] uppercase tracking-[0.25em] text-muted">Availability</p>
               <h3 class="mt-2 text-lg font-semibold">Fast, confidential advice</h3>
@@ -378,8 +406,8 @@
           <div class="sq overflow-hidden border border-line bg-white reveal">
             <div class="aspect-square">
               <img
-                src="https://images.squarespace-cdn.com/content/v1/68e96700e97e214d978494dd/1760132451474-GNV97O11MCL2MVS92IMU/unsplash-image-OIc_-XMXF_s.jpg?format=2500w"
-                alt="About T1 Asset Management"
+                src="https://images.squarespace-cdn.com/content/v1/601fd0787b0ff91513ebe340/1740835506656-1H4NUYBEC6M7QTAM1TKA/unsplash-image-muqrIzbDut0.jpg?format=2500w"
+                alt="Modern commercial property"
                 class="w-full h-full object-cover"
                 loading="lazy"
               />
@@ -420,15 +448,11 @@
         <div class="grid lg:grid-cols-2 gap-6 items-stretch">
           <div class="sq border border-line bg-white p-8 sm:p-10 reveal">
             <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Our Approach</p>
-            <h2 class="mt-3 text-3xl md:text-4xl font-semibold tracking-tight">
-              “Added value” at its core
-            </h2>
-
+            <h2 class="mt-3 text-3xl md:text-4xl font-semibold tracking-tight">“Added value” at its core</h2>
             <p class="mt-4 text-muted leading-relaxed">
               T1 Asset Management has “added value” at its core. We believe asset management is about three things:
               maximising value, reducing costs, and increasing returns.
             </p>
-
             <p class="mt-4 text-muted leading-relaxed">
               This philosophy is at the heart of our approach; both flexibility and in-depth market knowledge allows us to
               develop and implement a bespoke estates strategy to suit our clients’ business needs.
@@ -443,7 +467,6 @@
               </div>
               <p class="mt-2 text-sm text-muted">Identify and implement opportunities that enhance long-term performance.</p>
             </div>
-
             <div class="sq border bg-white p-6 reveal approach-card">
               <div class="flex items-center justify-between gap-4">
                 <h3 class="text-lg font-semibold tracking-tight">Reducing costs</h3>
@@ -451,7 +474,6 @@
               </div>
               <p class="mt-2 text-sm text-muted">Structured negotiation and timing to protect budgets and reduce exposure.</p>
             </div>
-
             <div class="sq border bg-white p-6 reveal approach-card">
               <div class="flex items-center justify-between gap-4">
                 <h3 class="text-lg font-semibold tracking-tight">Increasing returns</h3>
@@ -464,14 +486,14 @@
       </div>
     </section>
 
-    <!-- SERVICES -->
+    <!-- ✅ SERVICES (SLIDER FIXED) -->
     <section id="services" class="py-16 md:py-20 bg-paper">
       <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
         <div class="max-w-3xl reveal">
           <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Services</p>
           <h2 class="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">Professional services</h2>
           <p class="mt-5 text-muted leading-relaxed">
-            Clear, structured support across the lease events that matter most.
+            Evidence-led support across the lease events that matter most.
           </p>
           <div class="mt-7 flex flex-col sm:flex-row gap-3">
             <a href="/t1asset/professional-services" class="inline-flex items-center justify-center px-5 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
@@ -485,105 +507,123 @@
 
         <div class="mt-10 md:mt-14 relative">
           <div id="svcRail" class="svc-rail overflow-x-auto no-scrollbar">
-            <div class="flex gap-6 min-w-max pb-2">
-              <!-- cards unchanged from your original -->
-              <article class="svc-item w-[320px] md:w-[340px] sq border bg-white reveal svc-cardShell">
-                <div class="p-8 svc-card" style="min-height: 360px;">
-                  <div class="svc-body">
-                    <div class="w-10 h-10 sq border border-line bg-white flex items-center justify-center">
-                      <i data-feather="file-text" class="w-5 h-5"></i>
-                    </div>
-                    <h3 class="mt-8 text-2xl font-semibold tracking-tight">Lease Renewals</h3>
-                    <p class="mt-4 text-sm leading-relaxed text-muted">
-                      Renewal strategy under the Landlord &amp; Tenant Act 1954, with strict deadlines managed.
-                    </p>
+            <div class="svc-track">
+
+              <article class="svc-item sq border svc-photoCard reveal">
+                <div class="svc-photo">
+                  <img src="https://images.unsplash.com/photo-1588671186197-7fb734e9c33a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       alt="Modern commercial interior with clean architectural lines."
+                       class="w-full h-full object-cover" loading="lazy"/>
+                </div>
+                <div class="p-7 md:p-8">
+                  <div class="flex items-center justify-between gap-4">
+                    <h3 class="text-xl font-semibold tracking-tight">Lease Renewals</h3>
+                    <i data-feather="file-text" class="w-5 h-5"></i>
                   </div>
-                  <a href="/t1asset/professional-services" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  <p class="mt-3 text-sm leading-relaxed text-muted">
+                    Strategy under the Landlord &amp; Tenant Act 1954 — deadlines managed, terms negotiated.
+                  </p>
+                  <a href="/t1asset/professional-services" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
                     Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
                   </a>
                 </div>
               </article>
 
-              <article class="svc-item w-[320px] md:w-[340px] sq border bg-white reveal svc-cardShell">
-                <div class="p-8 svc-card" style="min-height: 360px;">
-                  <div class="svc-body">
-                    <div class="w-10 h-10 sq border border-line bg-white flex items-center justify-center">
-                      <i data-feather="minus-circle" class="w-5 h-5"></i>
-                    </div>
-                    <h3 class="mt-8 text-2xl font-semibold tracking-tight">Rent Reviews (Tenants)</h3>
-                    <p class="mt-4 text-sm leading-relaxed text-muted">
-                      Early advice and negotiation to a fair open-market rent — protecting leverage and time limits.
-                    </p>
+              <article class="svc-item sq border svc-photoCard reveal">
+                <div class="svc-photo">
+                  <img src="https://images.unsplash.com/photo-1526637201259-da59cb348242?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       alt="Office meeting space with a professional setting."
+                       class="w-full h-full object-cover" loading="lazy"/>
+                </div>
+                <div class="p-7 md:p-8">
+                  <div class="flex items-center justify-between gap-4">
+                    <h3 class="text-xl font-semibold tracking-tight">Rent Reviews (Tenants)</h3>
+                    <i data-feather="minus-circle" class="w-5 h-5"></i>
                   </div>
-                  <a href="/t1asset/professional-services" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  <p class="mt-3 text-sm leading-relaxed text-muted">
+                    Early advice to protect time limits and secure a fair open-market rent.
+                  </p>
+                  <a href="/t1asset/professional-services" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
                     Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
                   </a>
                 </div>
               </article>
 
-              <article class="svc-item w-[320px] md:w-[340px] sq border bg-white reveal svc-cardShell">
-                <div class="p-8 svc-card" style="min-height: 360px;">
-                  <div class="svc-body">
-                    <div class="w-10 h-10 sq border border-line bg-white flex items-center justify-center">
-                      <i data-feather="plus-circle" class="w-5 h-5"></i>
-                    </div>
-                    <h3 class="mt-8 text-2xl font-semibold tracking-tight">Rent Reviews (Landlords)</h3>
-                    <p class="mt-4 text-sm leading-relaxed text-muted">
-                      Evidence-led rental growth with clear options and flexible fee structures.
-                    </p>
+              <article class="svc-item sq border svc-photoCard reveal">
+                <div class="svc-photo">
+                  <img src="https://images.unsplash.com/photo-1667658070381-c46a2c6643a7?q=80&w=1631&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       alt="Contemporary commercial architecture in an urban environment."
+                       class="w-full h-full object-cover" loading="lazy"/>
+                </div>
+                <div class="p-7 md:p-8">
+                  <div class="flex items-center justify-between gap-4">
+                    <h3 class="text-xl font-semibold tracking-tight">Rent Reviews (Landlords)</h3>
+                    <i data-feather="plus-circle" class="w-5 h-5"></i>
                   </div>
-                  <a href="/t1asset/professional-services" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  <p class="mt-3 text-sm leading-relaxed text-muted">
+                    Evidence-led rental growth with clear options and flexible fee structures.
+                  </p>
+                  <a href="/t1asset/professional-services" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
                     Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
                   </a>
                 </div>
               </article>
 
-              <article class="svc-item w-[320px] md:w-[340px] sq border bg-white reveal svc-cardShell">
-                <div class="p-8 svc-card" style="min-height: 360px;">
-                  <div class="svc-body">
-                    <div class="w-10 h-10 sq border border-line bg-white flex items-center justify-center">
-                      <i data-feather="tool" class="w-5 h-5"></i>
-                    </div>
-                    <h3 class="mt-8 text-2xl font-semibold tracking-tight">Section 18 Valuations</h3>
-                    <p class="mt-4 text-sm leading-relaxed text-muted">
-                      Clear Section 18 assessments to support settlement of complex dilapidations disputes.
-                    </p>
+              <article class="svc-item sq border svc-photoCard reveal">
+                <div class="svc-photo">
+                  <img src="https://images.unsplash.com/photo-1653304797360-40d839e8319e?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       alt="Professional workspace detail suitable for valuation and reporting."
+                       class="w-full h-full object-cover" loading="lazy"/>
+                </div>
+                <div class="p-7 md:p-8">
+                  <div class="flex items-center justify-between gap-4">
+                    <h3 class="text-xl font-semibold tracking-tight">Section 18 Valuations</h3>
+                    <i data-feather="tool" class="w-5 h-5"></i>
                   </div>
-                  <a href="/t1asset/professional-services" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  <p class="mt-3 text-sm leading-relaxed text-muted">
+                    Clear Section 18 assessments to support settlement of dilapidations disputes.
+                  </p>
+                  <a href="/t1asset/professional-services" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
                     Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
                   </a>
                 </div>
               </article>
 
-              <article class="svc-item w-[320px] md:w-[340px] sq border bg-white reveal svc-cardShell">
-                <div class="p-8 svc-card" style="min-height: 360px;">
-                  <div class="svc-body">
-                    <div class="w-10 h-10 sq border border-line bg-white flex items-center justify-center">
-                      <i data-feather="alert-triangle" class="w-5 h-5"></i>
-                    </div>
-                    <h3 class="mt-8 text-2xl font-semibold tracking-tight">Break Clause Issues</h3>
-                    <p class="mt-4 text-sm leading-relaxed text-muted">
-                      Reduce risk and execute break conditions correctly — first time.
-                    </p>
+              <article class="svc-item sq border svc-photoCard reveal">
+                <div class="svc-photo">
+                  <img src="https://images.unsplash.com/photo-1770011916972-489f8d389075?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       alt="Professional legal or contractual context imagery."
+                       class="w-full h-full object-cover" loading="lazy"/>
+                </div>
+                <div class="p-7 md:p-8">
+                  <div class="flex items-center justify-between gap-4">
+                    <h3 class="text-xl font-semibold tracking-tight">Break Clause Issues</h3>
+                    <i data-feather="alert-triangle" class="w-5 h-5"></i>
                   </div>
-                  <a href="/t1asset/professional-services" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  <p class="mt-3 text-sm leading-relaxed text-muted">
+                    Reduce risk and execute break conditions correctly — first time.
+                  </p>
+                  <a href="/t1asset/professional-services" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
                     Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
                   </a>
                 </div>
               </article>
 
-              <article class="svc-item w-[320px] md:w-[340px] sq border bg-white reveal svc-cardShell">
-                <div class="p-8 svc-card" style="min-height: 360px;">
-                  <div class="svc-body">
-                    <div class="w-10 h-10 sq border border-line bg-white flex items-center justify-center">
-                      <i data-feather="scale" class="w-5 h-5"></i>
-                    </div>
-                    <h3 class="mt-8 text-2xl font-semibold tracking-tight">Expert Witness</h3>
-                    <p class="mt-4 text-sm leading-relaxed text-muted">
-                      Reports and dispute support for arbitration or independent expert determination.
-                    </p>
+              <article class="svc-item sq border svc-photoCard reveal">
+                <div class="svc-photo">
+                  <img src="https://images.unsplash.com/photo-1605561202544-b77ba4584114?q=80&w=1631&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                       alt="Professional discussion and advisory context."
+                       class="w-full h-full object-cover" loading="lazy"/>
+                </div>
+                <div class="p-7 md:p-8">
+                  <div class="flex items-center justify-between gap-4">
+                    <h3 class="text-xl font-semibold tracking-tight">Expert Witness</h3>
+                    <i data-feather="scale" class="w-5 h-5"></i>
                   </div>
-                  <a href="/t1asset/professional-services" class="mt-8 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  <p class="mt-3 text-sm leading-relaxed text-muted">
+                    Reports and dispute support for arbitration or independent expert determination.
+                  </p>
+                  <a href="/t1asset/professional-services" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
                     Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
                   </a>
                 </div>
@@ -593,21 +633,10 @@
           </div>
 
           <div class="mt-8 flex items-center gap-3 reveal">
-            <button
-              type="button"
-              id="svcPrev"
-              class="w-10 h-10 sq border border-line bg-white hover:bg-gray-50 transition inline-flex items-center justify-center"
-              aria-label="Previous"
-            >
+            <button type="button" id="svcPrev" class="w-10 h-10 sq border border-line bg-white hover:bg-gray-50 transition inline-flex items-center justify-center" aria-label="Previous">
               <i data-feather="chevron-left" class="w-4 h-4"></i>
             </button>
-
-            <button
-              type="button"
-              id="svcNext"
-              class="w-10 h-10 sq border border-line bg-white hover:bg-gray-50 transition inline-flex items-center justify-center"
-              aria-label="Next"
-            >
+            <button type="button" id="svcNext" class="w-10 h-10 sq border border-line bg-white hover:bg-gray-50 transition inline-flex items-center justify-center" aria-label="Next">
               <i data-feather="chevron-right" class="w-4 h-4"></i>
             </button>
           </div>
@@ -615,10 +644,9 @@
       </div>
     </section>
 
-    <!-- CONTACT (Formspree) -->
+    <!-- CONTACT -->
     <section id="contact" class="py-16 md:py-20">
       <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
-
         <div class="reveal max-w-3xl">
           <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Contact</p>
           <h2 class="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">A no obligation conversation, in confidence.</h2>
@@ -645,9 +673,7 @@
               </span>
               <div class="text-muted">
                 <p class="text-[11px] uppercase tracking-[0.22em]">Telephone</p>
-                <a href="tel:07912222905" class="mt-1 inline-block font-semibold text-ink hover:underline underline-offset-4">
-                  0791 2222 905
-                </a>
+                <a href="tel:07912222905" class="mt-1 inline-block font-semibold text-ink hover:underline underline-offset-4">0791 2222 905</a>
               </div>
             </div>
 
@@ -657,21 +683,14 @@
               </span>
               <div class="text-muted md:text-right">
                 <p class="text-[11px] uppercase tracking-[0.22em]">Email</p>
-                <a href="mailto:rob@t1assetmanagement.co.uk" class="mt-1 inline-block font-semibold text-ink hover:underline underline-offset-4">
-                  rob@t1assetmanagement.co.uk
-                </a>
+                <a href="mailto:rob@t1assetmanagement.co.uk" class="mt-1 inline-block font-semibold text-ink hover:underline underline-offset-4">rob@t1assetmanagement.co.uk</a>
               </div>
             </div>
           </div>
         </div>
 
         <div class="mt-8 sq border border-line bg-white p-8 sm:p-10 shadow-soft reveal" id="form">
-          <form
-            id="contactForm"
-            action="https://formspree.io/f/xgoleoed"
-            method="POST"
-            class="space-y-4"
-          >
+          <form id="contactForm" action="https://formspree.io/f/xgoleoed" method="POST" class="space-y-4">
             <input type="hidden" name="_subject" value="New website enquiry — T1 Asset Management" />
             <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
 
@@ -712,27 +731,19 @@
             </div>
 
             <p id="formStatus" class="text-xs text-muted leading-relaxed hidden"></p>
-
-            <p class="text-xs text-muted leading-relaxed">
-              By submitting this form you agree we may contact you in response to your enquiry.
-            </p>
+            <p class="text-xs text-muted leading-relaxed">By submitting this form you agree we may contact you in response to your enquiry.</p>
           </form>
         </div>
-
       </div>
     </section>
 
-    <!-- FOOTER (✅ now matches Contact page footer) -->
+    <!-- FOOTER -->
     <footer class="bg-black text-white">
       <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24 py-14">
         <div class="grid md:grid-cols-4 gap-10 reveal">
           <div>
-            <img
-              src="https://images.squarespace-cdn.com/content/v1/601fd0787b0ff91513ebe340/a4fbaec7-8c0d-427b-9f85-bc15ee43844e/Monochrome+on+Transparent.png?format=1500w"
-              alt="T1 Asset Management"
-              class="h-10 w-auto"
-              loading="lazy"
-            />
+            <img src="https://images.squarespace-cdn.com/content/v1/601fd0787b0ff91513ebe340/a4fbaec7-8c0d-427b-9f85-bc15ee43844e/Monochrome+on+Transparent.png?format=1500w"
+                 alt="T1 Asset Management" class="h-10 w-auto" loading="lazy"/>
             <p class="mt-4 text-sm text-white/70 leading-relaxed max-w-sm">
               Independent commercial property advice across Yorkshire and the UK.
             </p>
@@ -750,10 +761,7 @@
           <div>
             <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Office</p>
             <div class="mt-4 space-y-2 text-sm text-white/70">
-              <p>Unit 19 Holly Park Mills</p>
-              <p>Calverley</p>
-              <p>Leeds</p>
-              <p>LS28 5QS</p>
+              <p>Unit 19 Holly Park Mills</p><p>Calverley</p><p>Leeds</p><p>LS28 5QS</p>
             </div>
           </div>
 
@@ -769,13 +777,13 @@
         <div class="mt-12 pt-8 border-t border-white/15 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between reveal">
           <p class="text-sm text-white/60">© <span id="year"></span> T1 Asset Management. All rights reserved.</p>
           <div class="flex gap-6 text-sm">
-            <a href="/t1asset/privacy-policy" class="text-white/60 hover:text-white transition">Privacy Policy</a>
-            <a href="/t1asset/terms-of-service" class="text-white/60 hover:text-white transition">Terms of use</a>
+            <span class="text-white/60">Website design by</span>
+            <a href="http://franks-media.co.uk" target="_blank" rel="noopener noreferrer"
+               class="text-white/80 hover:text-white transition underline underline-offset-4">Franks Media</a>
           </div>
         </div>
       </div>
     </footer>
-
   </main>
 
   <!-- CALLBACK MODAL -->
@@ -884,22 +892,79 @@
     document.querySelectorAll("[data-close-callback]").forEach(btn => btn.addEventListener("click", closeCallback));
     modal.addEventListener("click", (e) => { if (e.target === modal.firstElementChild) closeCallback(); });
 
-    // Services scroller
+    // ✅ Rent Reviews dropdown
+    (function () {
+      const btn = document.getElementById("rentBtn");
+      const menu = document.getElementById("rentMenu");
+      if (!btn || !menu) return;
+
+      let closeT = null;
+
+      function openDD() {
+        if (closeT) { clearTimeout(closeT); closeT = null; }
+        menu.classList.add("open");
+        btn.setAttribute("aria-expanded", "true");
+      }
+      function closeDD() {
+        menu.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+      }
+      function scheduleClose() {
+        if (closeT) clearTimeout(closeT);
+        closeT = setTimeout(closeDD, 220);
+      }
+
+      btn.addEventListener("mouseenter", openDD);
+      menu.addEventListener("mouseenter", openDD);
+      btn.addEventListener("mouseleave", scheduleClose);
+      menu.addEventListener("mouseleave", scheduleClose);
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        menu.classList.contains("open") ? closeDD() : openDD();
+      });
+
+      document.addEventListener("click", (e) => {
+        const within = btn.contains(e.target) || menu.contains(e.target);
+        if (!within) closeDD();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeDD();
+      });
+    })();
+
+    // ✅ Services slider: EXACT one-card increments + no half-card end positions
     const rail = document.getElementById("svcRail");
     const prev = document.getElementById("svcPrev");
     const next = document.getElementById("svcNext");
 
-    function cardScrollAmount(){
-      const card = rail.querySelector("article");
-      if(!card) return 360;
-      const w = card.getBoundingClientRect().width;
-      return Math.round(w + 24);
+    function gapPx(){
+      const g = getComputedStyle(document.documentElement).getPropertyValue("--svc-gap").trim();
+      const n = parseFloat(g);
+      return Number.isFinite(n) ? n : 24;
     }
-    function scrollRail(dir){
-      rail.scrollBy({ left: dir * cardScrollAmount(), behavior: "smooth" });
+
+    function stepSize(){
+      const first = rail.querySelector(".svc-item");
+      if(!first) return 360;
+      return Math.round(first.getBoundingClientRect().width + gapPx());
     }
-    prev.addEventListener("click", () => scrollRail(-1));
-    next.addEventListener("click", () => scrollRail(1));
+
+    function snapTo(dir){
+      const step = stepSize();
+      const max = rail.scrollWidth - rail.clientWidth;
+
+      // current snap index
+      const current = rail.scrollLeft;
+      const idx = Math.round(current / step);
+      const target = Math.min(max, Math.max(0, (idx + dir) * step));
+
+      rail.scrollTo({ left: target, behavior: "smooth" });
+    }
+
+    prev.addEventListener("click", () => snapTo(-1));
+    next.addEventListener("click", () => snapTo(1));
 
     function updateDisabled(){
       const max = rail.scrollWidth - rail.clientWidth - 2;
@@ -910,8 +975,17 @@
       prev.classList.toggle("is-disabled", atStart);
       next.classList.toggle("is-disabled", atEnd);
     }
+
     rail.addEventListener("scroll", () => requestAnimationFrame(updateDisabled));
-    window.addEventListener("resize", updateDisabled);
+    window.addEventListener("resize", () => {
+      // re-snap to nearest position after breakpoint changes so it never shows halves
+      const step = stepSize();
+      if(step > 0){
+        const idx = Math.round(rail.scrollLeft / step);
+        rail.scrollTo({ left: idx * step });
+      }
+      updateDisabled();
+    });
     updateDisabled();
 
     // Fade-in on scroll
@@ -932,56 +1006,10 @@
         if (entry.isIntersecting) entry.target.classList.add("is-active");
         else entry.target.classList.remove("is-active");
       });
-    }, { threshold: 0.6, rootMargin: "0px 0px -20% 0px" });
+    }, { threshold: 0.35, rootMargin: "0px 0px -10% 0px" });
     approachCards.forEach((el) => approachIO.observe(el));
 
-    // ✅ Rent Reviews dropdown: hover-intent + stays open reliably (same as Contact)
-    (function () {
-      const btn = document.getElementById("rentBtn");
-      const menu = document.getElementById("rentMenu");
-      if (!btn || !menu) return;
-
-      let closeT = null;
-
-      function openDD() {
-        if (closeT) { clearTimeout(closeT); closeT = null; }
-        menu.classList.add("open");
-        btn.setAttribute("aria-expanded", "true");
-      }
-
-      function closeDD() {
-        menu.classList.remove("open");
-        btn.setAttribute("aria-expanded", "false");
-      }
-
-      function scheduleClose() {
-        if (closeT) clearTimeout(closeT);
-        closeT = setTimeout(closeDD, 220);
-      }
-
-      btn.addEventListener("mouseenter", openDD);
-      menu.addEventListener("mouseenter", openDD);
-
-      btn.addEventListener("mouseleave", scheduleClose);
-      menu.addEventListener("mouseleave", scheduleClose);
-
-      btn.addEventListener("click", (e) => {
-        e.preventDefault();
-        const isOpen = menu.classList.contains("open");
-        if (isOpen) closeDD(); else openDD();
-      });
-
-      document.addEventListener("click", (e) => {
-        const within = btn.contains(e.target) || menu.contains(e.target);
-        if (!within) closeDD();
-      });
-
-      document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") closeDD();
-      });
-    })();
-
-    // ✅ Formspree AJAX submit (Contact form)
+    // Formspree AJAX submit (Contact form)
     (function () {
       const form = document.getElementById("contactForm");
       const btn = document.getElementById("contactSubmit");
@@ -1020,7 +1048,7 @@
       });
     })();
 
-    // ✅ Formspree AJAX submit (Callback modal)
+    // Formspree AJAX submit (Callback modal)
     (function () {
       const form = document.getElementById("callbackForm");
       const btn = document.getElementById("callbackSubmit");
