@@ -1,26 +1,34 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-GB">
 <head>
   <meta charset="UTF-8" />
 
-  <!-- ✅ Make iOS status bar/background WHITE like the Privacy page -->
-  <!-- Key changes:
-       - remove apple "black-translucent"
-       - set theme-color to white
-       - keep viewport-fit for safe area
-  -->
+  <!-- iOS safe-area / white status bar -->
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-  <title>T1 Asset Management | Commercial Property Experts</title>
+  <!-- ✅ SEO: Leeds-focused title + description -->
+  <title>T1 Asset Management | Rent Reviews & Lease Renewals Surveyor in Leeds</title>
+  <meta name="description" content="Leeds-based chartered surveying support for commercial rent reviews, lease renewals and lease events across Yorkshire and the UK. Evidence-led negotiation and discreet advice." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://t1assetmanagement.co.uk/" />
 
-  <!-- ✅ Favicons (GitHub Pages project path: /t1asset/) -->
-  <link rel="icon" href="/t1asset/favicon-files/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="/t1asset/favicon-files/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/t1asset/favicon-files/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/t1asset/favicon-files/apple-touch-icon.png">
-  <link rel="manifest" href="/t1asset/favicon-files/site.webmanifest">
+  <!-- ✅ Open Graph / Twitter -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="T1 Asset Management" />
+  <meta property="og:title" content="T1 Asset Management | Rent Reviews & Lease Renewals Surveyor in Leeds" />
+  <meta property="og:description" content="Leeds-based commercial property specialists for rent reviews, lease renewals and lease events across Yorkshire and the UK." />
+  <meta property="og:url" content="https://t1assetmanagement.co.uk/" />
+  <meta property="og:image" content="https://image2url.com/r2/default/images/1769712235293-23883a5d-b00b-4d78-a5ae-45edd6e11829.png" />
+  <meta name="twitter:card" content="summary_large_image" />
+
+  <!-- ✅ Favicons (ROOT SITE) -->
+  <link rel="icon" href="/favicon-files/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-files/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-files/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon-files/apple-touch-icon.png">
+  <link rel="manifest" href="/favicon-files/site.webmanifest">
   <meta name="theme-color" content="#FFFFFF">
 
   <!-- Font -->
@@ -34,13 +42,39 @@
   <!-- Feather Icons -->
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
+  <!-- ✅ LocalBusiness schema (Leeds / Yorkshire) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ProfessionalService",
+    "name":"T1 Asset Management",
+    "url":"https://t1assetmanagement.co.uk/",
+    "areaServed":[
+      {"@type":"AdministrativeArea","name":"Leeds"},
+      {"@type":"AdministrativeArea","name":"West Yorkshire"},
+      {"@type":"AdministrativeArea","name":"Yorkshire"},
+      {"@type":"Country","name":"United Kingdom"}
+    ],
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"Unit 19 Holly Park Mills, Calverley",
+      "addressLocality":"Leeds",
+      "postalCode":"LS28 5QS",
+      "addressCountry":"GB"
+    },
+    "telephone":"+44 7912 222 905",
+    "email":"rob@t1assetmanagement.co.uk",
+    "description":"Leeds-based commercial property specialists for rent reviews, lease renewals and lease events across Yorkshire and the UK."
+  }
+  </script>
+
   <style>
     html { scroll-behavior: smooth; }
     body{
       font-family: Inter, ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans";
     }
 
-    /* ✅ Ensure the top safe-area is white when using viewport-fit (iOS notch devices) */
+    /* Ensure top safe-area is white on iOS notch devices */
     body::before{
       content:"";
       position: fixed;
@@ -51,13 +85,9 @@
       pointer-events: none;
     }
 
-    /* Squared system */
     .sq { border-radius: 0 !important; }
-
-    /* Premium separators */
     .hairline{ height:1px; background: rgba(2,6,23,.08); }
 
-    /* Fade-in on scroll */
     .reveal{
       opacity:0;
       transform:translateY(10px);
@@ -66,7 +96,6 @@
     }
     .reveal.is-visible{ opacity:1; transform:translateY(0); }
 
-    /* ✅ HERO overlay */
     .hero-overlay{ position: relative; }
     .hero-overlay::before{
       content:"";
@@ -78,17 +107,14 @@
         linear-gradient(90deg, rgba(0,0,0,.66) 0%, rgba(0,0,0,.22) 58%, rgba(0,0,0,.08) 100%);
     }
 
-    /* Typography tuning */
     .hero-h1{ letter-spacing:-0.035em; }
     @media (min-width: 1024px){ .hero-h1{ letter-spacing:-0.045em; } }
 
-    /* Hide scrollbars */
     .no-scrollbar::-webkit-scrollbar { display: none; }
     .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
-
     .is-disabled { opacity: .35; cursor: not-allowed; }
 
-    /* ✅ Mobile menu overlay */
+    /* Mobile menu overlay */
     .menu-backdrop{
       position: fixed; inset: 0;
       background: rgba(0,0,0,.35);
@@ -117,7 +143,7 @@
     }
     .no-scroll { overflow: hidden; }
 
-    /* OUR APPROACH hover */
+    /* Our Approach hover */
     .approach-card{
       transition: transform 520ms ease, box-shadow 520ms ease, border-color 520ms ease;
       border-color: rgba(2,6,23,.10);
@@ -148,7 +174,7 @@
       outline: none;
     }
 
-    /* ✅ Desktop dropdown */
+    /* Desktop dropdown */
     .nav-dd{ position: relative; }
     .nav-dd-panel{
       position: absolute;
@@ -178,9 +204,8 @@
       height:18px;
     }
 
-    /* ✅ SERVICES SLIDER */
+    /* Services slider */
     :root { --svc-gap: 24px; }
-
     .svc-rail{
       scroll-snap-type: x mandatory;
       scroll-padding-left: 0px;
@@ -188,14 +213,12 @@
       overscroll-behavior-x: contain;
       -webkit-overflow-scrolling: touch;
     }
-
     .svc-track{
       display: flex;
       gap: var(--svc-gap);
       width: 100%;
       padding-bottom: 8px;
     }
-
     .svc-item{
       scroll-snap-align: start;
       scroll-snap-stop: always;
@@ -207,7 +230,6 @@
     @media (min-width: 1024px){
       .svc-item{ flex-basis: calc((100% - (var(--svc-gap) * 2)) / 3); }
     }
-
     .svc-photoCard{
       border-color: rgba(2,6,23,.10);
       transition: background-color 200ms ease, border-color 200ms ease, transform 200ms ease;
@@ -259,17 +281,18 @@
   <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-black/5">
     <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
       <div class="h-[72px] flex items-center justify-between">
-        <a href="/t1asset/index.html" class="flex items-center">
+        <a href="/index.html" class="flex items-center" aria-label="T1 Asset Management home">
           <img
             src="https://image2url.com/r2/default/images/1769712235293-23883a5d-b00b-4d78-a5ae-45edd6e11829.png"
             alt="T1 Asset Management"
             class="h-10 w-auto"
             loading="eager"
+            decoding="async"
           />
         </a>
 
-        <nav class="hidden md:flex items-center gap-10 text-[13px] tracking-wide">
-          <a href="/t1asset/index.html" class="text-ink hover:text-ink transition">Home</a>
+        <nav class="hidden md:flex items-center gap-10 text-[13px] tracking-wide" aria-label="Primary navigation">
+          <a href="/index.html" class="text-ink hover:text-ink transition">Home</a>
 
           <div class="nav-dd">
             <button
@@ -284,13 +307,13 @@
             </button>
 
             <div id="rentMenu" class="nav-dd-panel sq" role="menu" aria-label="Rent Reviews submenu">
-              <a href="/t1asset/rent-reviews-tenants" class="block px-4 py-3 text-sm hover:bg-gray-50" role="menuitem">Tenants</a>
-              <a href="/t1asset/rent-reviews-landlords" class="block px-4 py-3 text-sm hover:bg-gray-50" role="menuitem">Landlords</a>
+              <a href="/rent-reviews-tenants.html" class="block px-4 py-3 text-sm hover:bg-gray-50" role="menuitem">Tenants</a>
+              <a href="/rent-reviews-landlords.html" class="block px-4 py-3 text-sm hover:bg-gray-50" role="menuitem">Landlords</a>
             </div>
           </div>
 
-          <a href="/t1asset/professional-services" class="text-ink/80 hover:text-ink transition">Other Services</a>
-          <a href="/t1asset/contact.html" class="text-ink/80 hover:text-ink transition">Contact</a>
+          <a href="/professional-services.html" class="text-ink/80 hover:text-ink transition">Other Services</a>
+          <a href="/contact.html" class="text-ink/80 hover:text-ink transition">Contact</a>
         </nav>
 
         <div class="flex items-center gap-3">
@@ -321,12 +344,12 @@
 
   <div id="menuDrawer" class="menu-drawer md:hidden" role="dialog" aria-modal="true" aria-label="Mobile menu">
     <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24 py-4">
-      <nav class="flex flex-col text-sm">
-        <a href="/t1asset/index.html" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Home</a>
-        <a href="/t1asset/rent-reviews-tenants" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Rent Reviews — Tenants</a>
-        <a href="/t1asset/rent-reviews-landlords" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Rent Reviews — Landlords</a>
-        <a href="/t1asset/professional-services" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Other Services</a>
-        <a href="/t1asset/contact.html" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Contact</a>
+      <nav class="flex flex-col text-sm" aria-label="Mobile navigation">
+        <a href="/index.html" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Home</a>
+        <a href="/rent-reviews-tenants.html" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Rent Reviews — Tenants</a>
+        <a href="/rent-reviews-landlords.html" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Rent Reviews — Landlords</a>
+        <a href="/professional-services.html" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Other Services</a>
+        <a href="/contact.html" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Contact</a>
 
         <button type="button" data-open-callback data-close-menu class="mt-3 w-full sq bg-ink text-white font-semibold px-4 py-3 text-left hover:bg-black transition">
           Request a call back
@@ -341,9 +364,10 @@
       <div class="relative hero-overlay">
         <img
           src="https://images.squarespace-cdn.com/content/v1/68e96700e97e214d978494dd/1760132451474-GNV97O11MCL2MVS92IMU/unsplash-image-OIc_-XMXF_s.jpg?format=2500w"
-          alt="About T1 Asset Management"
+          alt="Leeds commercial property advice for rent reviews and lease renewals"
           class="w-full h-[72vh] min-h-[640px] md:h-[78vh] object-cover"
           loading="eager"
+          decoding="async"
         />
 
         <div class="absolute inset-0">
@@ -352,25 +376,25 @@
               <div class="w-full">
                 <div class="max-w-3xl reveal">
                   <p class="text-[10px] sm:text-[11px] uppercase tracking-[0.28em] text-white/70">
-                    Leeds-based • UK-wide
+                    Leeds-based • Yorkshire &amp; UK-wide
                   </p>
 
                   <h1 class="hero-h1 mt-5 text-white font-semibold leading-[1.02]
                              text-[34px] sm:text-[52px] md:text-[64px] lg:text-[72px]">
-                    Leeds Premier Rent Review &amp; Lease Renewal Specialists.
+                    Leeds rent review &amp; lease renewal specialists.
                   </h1>
 
                   <p class="mt-6 text-white/80 leading-relaxed text-[14px] sm:text-[16px] md:text-[18px] max-w-2xl">
-                    Specialist commercial property advice across lease events, rent reviews and portfolio strategy —
+                    Evidence-led commercial property advice across rent reviews, lease renewals and key lease events —
                     delivered with clarity and discretion.
                   </p>
 
                   <div class="mt-8 flex flex-col sm:flex-row gap-3">
                     <a href="#contact" class="inline-flex items-center justify-center px-6 py-3 sq bg-white text-ink text-sm font-semibold hover:bg-gray-100 transition">
-                      Speak to a surveyor <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
+                      Speak to a Leeds surveyor <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
                     </a>
 
-                    <a href="/t1asset/professional-services" class="inline-flex items-center justify-center px-6 py-3 sq border border-white/30 text-white text-sm font-semibold hover:bg-white/10 transition">
+                    <a href="/professional-services.html" class="inline-flex items-center justify-center px-6 py-3 sq border border-white/30 text-white text-sm font-semibold hover:bg-white/10 transition">
                       View professional services
                     </a>
                   </div>
@@ -378,7 +402,7 @@
                   <div class="mt-10 h-px w-full bg-white/15"></div>
 
                   <p class="mt-6 text-white/65 text-[12px] tracking-wide">
-                    Lease renewals • Rent reviews • Dispute support
+                    Lease renewals • Rent reviews • Dispute support • Portfolio strategy
                   </p>
                 </div>
               </div>
@@ -419,9 +443,10 @@
             <div class="aspect-square">
               <img
                 src="https://images.unsplash.com/photo-1592990493772-6b25eb2ae72b?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                alt="Modern commercial property"
+                alt="Modern commercial property in Leeds and Yorkshire"
                 class="w-full h-full object-cover"
                 loading="lazy"
+                decoding="async"
               />
             </div>
           </div>
@@ -429,7 +454,7 @@
           <div class="sq border border-line bg-white p-8 sm:p-10 flex flex-col reveal">
             <p class="text-[11px] uppercase tracking-[0.28em] text-muted">About</p>
             <h2 class="mt-3 text-3xl md:text-4xl font-semibold tracking-tight">
-              Independent commercial property advice
+              Independent commercial property advice in Leeds
             </h2>
 
             <p class="mt-4 text-muted leading-relaxed">
@@ -498,17 +523,17 @@
       </div>
     </section>
 
-    <!-- ✅ SERVICES (SLIDER FIXED) -->
+    <!-- SERVICES -->
     <section id="services" class="py-16 md:py-20 bg-paper">
       <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
         <div class="max-w-3xl reveal">
           <p class="text-[11px] uppercase tracking-[0.28em] text-muted">Services</p>
           <h2 class="mt-4 text-3xl md:text-4xl font-semibold tracking-tight">Professional services</h2>
           <p class="mt-5 text-muted leading-relaxed">
-            Evidence-led support across the lease events that matter most.
+            Evidence-led support across the lease events that matter most — from rent reviews to renewals and dispute support.
           </p>
           <div class="mt-7 flex flex-col sm:flex-row gap-3">
-            <a href="/t1asset/professional-services" class="inline-flex items-center justify-center px-5 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
+            <a href="/professional-services.html" class="inline-flex items-center justify-center px-5 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
               View professional services
             </a>
             <a href="#contact" class="inline-flex items-center justify-center px-5 py-3 sq border border-line text-sm font-semibold hover:bg-gray-50 transition">
@@ -517,6 +542,7 @@
           </div>
         </div>
 
+        <!-- slider content unchanged except links -->
         <div class="mt-10 md:mt-14 relative">
           <div id="svcRail" class="svc-rail overflow-x-auto no-scrollbar">
             <div class="svc-track">
@@ -524,8 +550,8 @@
               <article class="svc-item sq border svc-photoCard reveal">
                 <div class="svc-photo">
                   <img src="https://images.unsplash.com/photo-1588671186197-7fb734e9c33a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                       alt="Modern commercial interior with clean architectural lines."
-                       class="w-full h-full object-cover" loading="lazy"/>
+                       alt="Commercial lease renewals advisory"
+                       class="w-full h-full object-cover" loading="lazy" decoding="async"/>
                 </div>
                 <div class="p-7 md:p-8">
                   <div class="flex items-center justify-between gap-4">
@@ -535,7 +561,7 @@
                   <p class="mt-3 text-sm leading-relaxed text-muted">
                     Strategy under the Landlord &amp; Tenant Act 1954 — deadlines managed, terms negotiated.
                   </p>
-                  <a href="/t1asset/professional-services" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  <a href="/professional-services.html" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
                     Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
                   </a>
                 </div>
@@ -544,8 +570,8 @@
               <article class="svc-item sq border svc-photoCard reveal">
                 <div class="svc-photo">
                   <img src="https://images.unsplash.com/photo-1526637201259-da59cb348242?q=80&w=1074&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                       alt="Office meeting space with a professional setting."
-                       class="w-full h-full object-cover" loading="lazy"/>
+                       alt="Rent review advice for tenants in Leeds"
+                       class="w-full h-full object-cover" loading="lazy" decoding="async"/>
                 </div>
                 <div class="p-7 md:p-8">
                   <div class="flex items-center justify-between gap-4">
@@ -555,7 +581,7 @@
                   <p class="mt-3 text-sm leading-relaxed text-muted">
                     Early advice to protect time limits and secure a fair open-market rent.
                   </p>
-                  <a href="/t1asset/professional-services" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  <a href="/rent-reviews-tenants.html" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
                     Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
                   </a>
                 </div>
@@ -564,8 +590,8 @@
               <article class="svc-item sq border svc-photoCard reveal">
                 <div class="svc-photo">
                   <img src="https://images.unsplash.com/photo-1667658070381-c46a2c6643a7?q=80&w=1631&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                       alt="Contemporary commercial architecture in an urban environment."
-                       class="w-full h-full object-cover" loading="lazy"/>
+                       alt="Rent review advice for landlords in Leeds"
+                       class="w-full h-full object-cover" loading="lazy" decoding="async"/>
                 </div>
                 <div class="p-7 md:p-8">
                   <div class="flex items-center justify-between gap-4">
@@ -575,7 +601,7 @@
                   <p class="mt-3 text-sm leading-relaxed text-muted">
                     Evidence-led rental growth with clear options and flexible fee structures.
                   </p>
-                  <a href="/t1asset/professional-services" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  <a href="/rent-reviews-landlords.html" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
                     Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
                   </a>
                 </div>
@@ -584,8 +610,8 @@
               <article class="svc-item sq border svc-photoCard reveal">
                 <div class="svc-photo">
                   <img src="https://images.unsplash.com/photo-1653304797360-40d839e8319e?q=80&w=686&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                       alt="Professional workspace detail suitable for valuation and reporting."
-                       class="w-full h-full object-cover" loading="lazy"/>
+                       alt="Section 18 valuations for dilapidations"
+                       class="w-full h-full object-cover" loading="lazy" decoding="async"/>
                 </div>
                 <div class="p-7 md:p-8">
                   <div class="flex items-center justify-between gap-4">
@@ -595,7 +621,7 @@
                   <p class="mt-3 text-sm leading-relaxed text-muted">
                     Clear Section 18 assessments to support settlement of dilapidations disputes.
                   </p>
-                  <a href="/t1asset/professional-services" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  <a href="/professional-services.html" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
                     Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
                   </a>
                 </div>
@@ -604,8 +630,8 @@
               <article class="svc-item sq border svc-photoCard reveal">
                 <div class="svc-photo">
                   <img src="https://images.unsplash.com/photo-1770011916972-489f8d389075?q=80&w=1169&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                       alt="Professional legal or contractual context imagery."
-                       class="w-full h-full object-cover" loading="lazy"/>
+                       alt="Commercial break clause advice"
+                       class="w-full h-full object-cover" loading="lazy" decoding="async"/>
                 </div>
                 <div class="p-7 md:p-8">
                   <div class="flex items-center justify-between gap-4">
@@ -615,7 +641,7 @@
                   <p class="mt-3 text-sm leading-relaxed text-muted">
                     Reduce risk and execute break conditions correctly — first time.
                   </p>
-                  <a href="/t1asset/professional-services" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  <a href="/professional-services.html" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
                     Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
                   </a>
                 </div>
@@ -624,8 +650,8 @@
               <article class="svc-item sq border svc-photoCard reveal">
                 <div class="svc-photo">
                   <img src="https://images.unsplash.com/photo-1605561202544-b77ba4584114?q=80&w=1631&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                       alt="Professional discussion and advisory context."
-                       class="w-full h-full object-cover" loading="lazy"/>
+                       alt="Expert witness reporting support"
+                       class="w-full h-full object-cover" loading="lazy" decoding="async"/>
                 </div>
                 <div class="p-7 md:p-8">
                   <div class="flex items-center justify-between gap-4">
@@ -635,7 +661,7 @@
                   <p class="mt-3 text-sm leading-relaxed text-muted">
                     Reports and dispute support for arbitration or independent expert determination.
                   </p>
-                  <a href="/t1asset/professional-services" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
+                  <a href="/professional-services.html" class="mt-6 inline-flex items-center gap-2 text-sm font-semibold underline underline-offset-4">
                     Learn more <i data-feather="arrow-right" class="w-4 h-4"></i>
                   </a>
                 </div>
@@ -755,17 +781,17 @@
         <div class="grid md:grid-cols-4 gap-10 reveal">
           <div>
             <img src="https://images.squarespace-cdn.com/content/v1/601fd0787b0ff91513ebe340/a4fbaec7-8c0d-427b-9f85-bc15ee43844e/Monochrome+on+Transparent.png?format=1500w"
-                 alt="T1 Asset Management" class="h-10 w-auto" loading="lazy"/>
+                 alt="T1 Asset Management" class="h-10 w-auto" loading="lazy" decoding="async"/>
             <p class="mt-4 text-sm text-white/70 leading-relaxed max-w-sm">
-              Independent commercial property advice across Yorkshire and the UK.
+              Independent commercial property advice across Leeds, Yorkshire and the UK.
             </p>
           </div>
 
           <div>
             <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Services</p>
             <ul class="mt-4 space-y-2 text-sm">
-              <li><a class="text-white/80 hover:text-white transition" href="/t1asset/professional-services">Professional Services</a></li>
-              <li><a class="text-white/80 hover:text-white transition" href="/t1asset/contact.html">Contact</a></li>
+              <li><a class="text-white/80 hover:text-white transition" href="/professional-services.html">Professional Services</a></li>
+              <li><a class="text-white/80 hover:text-white transition" href="/contact.html">Contact</a></li>
               <li><button data-open-callback class="text-left text-white/80 hover:text-white transition">Request a call back</button></li>
             </ul>
           </div>
@@ -780,8 +806,8 @@
           <div>
             <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Legal</p>
             <ul class="mt-4 space-y-2 text-sm">
-              <li><a href="/t1asset/privacy-policy" class="text-white/80 hover:text-white transition">Privacy Policy</a></li>
-              <li><a href="/t1asset/terms-of-service" class="text-white/80 hover:text-white transition">Terms of use</a></li>
+              <li><a href="/privacy-policy.html" class="text-white/80 hover:text-white transition">Privacy Policy</a></li>
+              <li><a href="/terms-of-service.html" class="text-white/80 hover:text-white transition">Terms of use</a></li>
             </ul>
           </div>
         </div>
@@ -904,7 +930,7 @@
     document.querySelectorAll("[data-close-callback]").forEach(btn => btn.addEventListener("click", closeCallback));
     modal.addEventListener("click", (e) => { if (e.target === modal.firstElementChild) closeCallback(); });
 
-    // ✅ Rent Reviews dropdown (desktop)
+    // Rent Reviews dropdown (desktop)
     (function () {
       const btn = document.getElementById("rentBtn");
       const menu = document.getElementById("rentMenu");
@@ -946,7 +972,7 @@
       });
     })();
 
-    // ✅ Services slider: EXACT one-card increments + no half-card end positions
+    // Services slider
     const rail = document.getElementById("svcRail");
     const prev = document.getElementById("svcPrev");
     const next = document.getElementById("svcNext");
