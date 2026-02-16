@@ -8,29 +8,27 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
 
-  <!-- ✅ SEO -->
+  <!-- ✅ SEO (CONTACT) -->
   <title>Contact T1 Asset Management | Commercial Property Advice in Leeds</title>
   <meta name="description" content="Contact T1 Asset Management in Leeds for confidential commercial property advice. Call 0791 2222 905 or send an enquiry — tenants and landlords supported UK-wide." />
   <meta name="robots" content="index,follow" />
-
-  <!-- ✅ Canonical (use your final live URL if different) -->
   <link rel="canonical" href="https://t1assetmanagement.co.uk/contact.html" />
 
   <!-- ✅ Open Graph / Twitter -->
   <meta property="og:type" content="website" />
   <meta property="og:site_name" content="T1 Asset Management" />
   <meta property="og:title" content="Contact T1 Asset Management | Commercial Property Advice in Leeds" />
-  <meta property="og:description" content="Get in touch for confidential commercial property advice. Call 0791 2222 905 or send an enquiry — Leeds-based, UK-wide." />
+  <meta property="og:description" content="Confidential commercial property advice. Call 0791 2222 905 or send an enquiry — UK-wide support for tenants and landlords." />
   <meta property="og:url" content="https://t1assetmanagement.co.uk/contact.html" />
   <meta property="og:image" content="https://image2url.com/r2/default/images/1769712235293-23883a5d-b00b-4d78-a5ae-45edd6e11829.png" />
   <meta name="twitter:card" content="summary_large_image" />
 
-  <!-- ✅ Favicons (GitHub Pages project path: /t1asset/) -->
-  <link rel="icon" href="/t1asset/favicon-files/favicon.ico" sizes="any">
-  <link rel="icon" type="image/png" sizes="32x32" href="/t1asset/favicon-files/favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="/t1asset/favicon-files/favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="/t1asset/favicon-files/apple-touch-icon.png">
-  <link rel="manifest" href="/t1asset/favicon-files/site.webmanifest">
+  <!-- ✅ Favicons (ROOT SITE) -->
+  <link rel="icon" href="/favicon-files/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-files/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-files/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/favicon-files/apple-touch-icon.png">
+  <link rel="manifest" href="/favicon-files/site.webmanifest">
   <meta name="theme-color" content="#FFFFFF">
 
   <!-- Font -->
@@ -43,6 +41,33 @@
 
   <!-- Feather Icons -->
   <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  <!-- ✅ LocalBusiness schema (contact URL) -->
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"ProfessionalService",
+    "name":"T1 Asset Management",
+    "url":"https://t1assetmanagement.co.uk/",
+    "sameAs": [],
+    "areaServed":[
+      {"@type":"AdministrativeArea","name":"Leeds"},
+      {"@type":"AdministrativeArea","name":"West Yorkshire"},
+      {"@type":"AdministrativeArea","name":"Yorkshire"},
+      {"@type":"Country","name":"United Kingdom"}
+    ],
+    "address":{
+      "@type":"PostalAddress",
+      "streetAddress":"Unit 19 Holly Park Mills, Calverley",
+      "addressLocality":"Leeds",
+      "postalCode":"LS28 5QS",
+      "addressCountry":"GB"
+    },
+    "telephone":"+44 7912 222 905",
+    "email":"rob@t1assetmanagement.co.uk",
+    "description":"Leeds-based commercial property specialists for rent reviews, lease renewals and lease events across Yorkshire and the UK."
+  }
+  </script>
 
   <style>
     html { scroll-behavior: smooth; }
@@ -61,7 +86,6 @@
       pointer-events: none;
     }
 
-    /* Squared system */
     .sq { border-radius: 0 !important; }
 
     /* Fade-in on scroll */
@@ -114,34 +138,7 @@
       outline: none;
     }
 
-    /* HERO photo overlay */
-    .hero-overlay{ position: relative; }
-    .hero-overlay::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      pointer-events:none;
-      background:
-        radial-gradient(900px 520px at 16% 50%, rgba(0,0,0,.76) 0%, rgba(0,0,0,.28) 62%, rgba(0,0,0,0) 100%),
-        linear-gradient(90deg, rgba(0,0,0,.66) 0%, rgba(0,0,0,.22) 58%, rgba(0,0,0,.08) 100%);
-    }
-
-    .hero-h1{ letter-spacing:-0.035em; }
-    @media (min-width: 1024px){ .hero-h1{ letter-spacing:-0.045em; } }
-
-    /* Contact info cards */
-    .info-card{
-      transition: border-color 200ms ease, background-color 200ms ease;
-      border-color: rgba(2,6,23,.10);
-    }
-    @media (hover:hover) and (pointer:fine){
-      .info-card:hover{
-        border-color: rgba(2,6,23,.22);
-        background: rgba(2,6,23,.01);
-      }
-    }
-
-    /* ✅ Desktop dropdown (hover + stays open reliably) */
+    /* ✅ Desktop dropdown */
     .nav-dd{ position: relative; }
     .nav-dd-panel{
       position: absolute;
@@ -178,9 +175,9 @@
         extend: {
           colors: {
             ink: "#0B1220",
+            line: "#E5E7EB",
             muted: "#6B7280",
-            paper: "#FAFAFA",
-            line: "#E5E7EB"
+            paper: "#FAFAFA"
           },
           boxShadow: {
             soft: "0 10px 24px rgba(2, 6, 23, 0.08)",
@@ -190,32 +187,6 @@
       }
     }
   </script>
-
-  <!-- ✅ LocalBusiness JSON-LD -->
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"ProfessionalService",
-    "name":"T1 Asset Management",
-    "url":"https://t1assetmanagement.co.uk/",
-    "areaServed":[
-      {"@type":"AdministrativeArea","name":"Leeds"},
-      {"@type":"AdministrativeArea","name":"West Yorkshire"},
-      {"@type":"AdministrativeArea","name":"Yorkshire"},
-      {"@type":"Country","name":"United Kingdom"}
-    ],
-    "address":{
-      "@type":"PostalAddress",
-      "streetAddress":"Unit 19 Holly Park Mills, Calverley",
-      "addressLocality":"Leeds",
-      "postalCode":"LS28 5QS",
-      "addressCountry":"GB"
-    },
-    "telephone":"+44 7912 222 905",
-    "email":"rob@t1assetmanagement.co.uk",
-    "description":"Leeds-based commercial property specialists for rent reviews, lease renewals and lease events across Yorkshire and the UK."
-  }
-  </script>
 </head>
 
 <body class="bg-white text-ink antialiased">
@@ -224,7 +195,7 @@
   <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-black/5">
     <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
       <div class="h-[72px] flex items-center justify-between">
-        <a href="/t1asset/index.html" class="flex items-center" aria-label="T1 Asset Management home">
+        <a href="/index.html" class="flex items-center" aria-label="T1 Asset Management home">
           <img
             src="https://image2url.com/r2/default/images/1769712235293-23883a5d-b00b-4d78-a5ae-45edd6e11829.png"
             alt="T1 Asset Management"
@@ -235,9 +206,8 @@
         </a>
 
         <nav class="hidden md:flex items-center gap-10 text-[13px] tracking-wide" aria-label="Primary navigation">
-          <a href="/t1asset/index.html" class="text-ink/80 hover:text-ink transition">Home</a>
+          <a href="/index.html" class="text-ink/80 hover:text-ink transition">Home</a>
 
-          <!-- Rent Reviews dropdown -->
           <div class="nav-dd">
             <button
               type="button"
@@ -251,13 +221,13 @@
             </button>
 
             <div id="rentMenu" class="nav-dd-panel sq" role="menu" aria-label="Rent Reviews submenu">
-              <a href="/t1asset/rent-reviews-tenants" class="block px-4 py-3 text-sm hover:bg-gray-50" role="menuitem">Tenants</a>
-              <a href="/t1asset/rent-reviews-landlords" class="block px-4 py-3 text-sm hover:bg-gray-50" role="menuitem">Landlords</a>
+              <a href="/rent-reviews-tenants.html" class="block px-4 py-3 text-sm hover:bg-gray-50" role="menuitem">Tenants</a>
+              <a href="/rent-reviews-landlords.html" class="block px-4 py-3 text-sm hover:bg-gray-50" role="menuitem">Landlords</a>
             </div>
           </div>
 
-          <a href="/t1asset/professional-services.html" class="text-ink/80 hover:text-ink transition">Other Services</a>
-          <a href="/t1asset/contact.html" class="text-ink hover:text-ink transition">Contact</a>
+          <a href="/professional-services.html" class="text-ink/80 hover:text-ink transition">Other Services</a>
+          <a href="/contact.html#form" class="text-ink hover:text-ink transition">Contact</a>
         </nav>
 
         <div class="flex items-center gap-3">
@@ -286,14 +256,15 @@
   <!-- Mobile menu overlay -->
   <div id="menuBackdrop" class="menu-backdrop md:hidden" aria-hidden="true"></div>
 
+  <!-- Mobile menu -->
   <div id="menuDrawer" class="menu-drawer md:hidden" role="dialog" aria-modal="true" aria-label="Mobile menu">
     <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24 py-4">
       <nav class="flex flex-col text-sm" aria-label="Mobile navigation">
-        <a href="/t1asset/index.html" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Home</a>
-        <a href="/t1asset/rent-reviews-tenants" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Rent Reviews — Tenants</a>
-        <a href="/t1asset/rent-reviews-landlords" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Rent Reviews — Landlords</a>
-        <a href="/t1asset/professional-services.html" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Other Services</a>
-        <a href="/t1asset/contact.html" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Contact</a>
+        <a href="/index.html" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Home</a>
+        <a href="/rent-reviews-tenants.html" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Rent Reviews — Tenants</a>
+        <a href="/rent-reviews-landlords.html" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Rent Reviews — Landlords</a>
+        <a href="/professional-services.html" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Other Services</a>
+        <a href="/contact.html#form" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Contact</a>
 
         <button type="button" data-open-callback data-close-menu class="mt-3 w-full sq bg-ink text-white font-semibold px-4 py-3 text-left hover:bg-black transition">
           Request a call back
@@ -304,77 +275,27 @@
 
   <main>
 
-    <!-- HERO -->
-    <section class="relative overflow-hidden">
-      <div class="relative hero-overlay">
-        <img
-          src="https://images.unsplash.com/photo-1588671186197-7fb734e9c33a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="Modern commercial interior"
-          class="w-full h-[72vh] min-h-[640px] md:h-[78vh] object-cover"
-          loading="eager"
-          decoding="async"
-        />
-
-        <div class="absolute inset-0">
-          <div class="max-w-7xl mx-auto h-full px-4 md:px-10 lg:px-24">
-            <div class="h-full flex items-center pt-24 pb-16 sm:pt-28 sm:pb-20 md:pt-32 md:pb-24">
-              <div class="w-full">
-                <div class="max-w-3xl reveal">
-                  <p class="text-[10px] sm:text-[11px] uppercase tracking-[0.28em] text-white/70">
-                    Leeds-based • Yorkshire &amp; UK-wide
-                  </p>
-
-                  <h1 class="hero-h1 mt-5 text-white font-semibold leading-[1.02]
-                             text-[44px] sm:text-[56px] md:text-[66px] lg:text-[72px]">
-                    Contact
-                  </h1>
-
-                  <div class="mt-8 flex flex-col sm:flex-row gap-3">
-                    <a href="#form"
-                       class="inline-flex items-center justify-center px-6 py-3 sq bg-white text-ink text-sm font-semibold hover:bg-gray-100 transition">
-                      Contact us now
-                    </a>
-
-                    <button type="button" data-open-callback
-                            class="inline-flex items-center justify-center px-6 py-3 sq border border-white/30 text-white text-sm font-semibold hover:bg-white/10 transition">
-                      Request a call back
-                    </button>
-                  </div>
-
-                  <div class="mt-10 h-px w-full bg-white/15"></div>
-
-                  <p class="mt-6 text-white/65 text-[12px] tracking-wide">
-                    Lease renewals • Rent reviews • Dispute support • Portfolio strategy
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-    </section>
-
-    <!-- INTRO -->
+    <!-- HEADER -->
     <section class="py-16 md:py-20">
       <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
         <div class="max-w-3xl reveal">
-          <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">
+          <p class="text-[11px] uppercase tracking-[0.28em] text-muted">T1 Asset Management, Leeds</p>
+          <h1 class="mt-4 text-4xl md:text-5xl font-semibold tracking-tight">
             A no obligation conversation, in confidence.
-          </h2>
-          <p class="mt-5 text-muted leading-relaxed">
-            Please fill in the form below and one of our specialists will contact you for a no obligation conversation in the strictest confidence.
+          </h1>
+          <p class="mt-6 text-muted leading-relaxed">
+            Please complete the form below and one of our specialists will contact you for a no obligation conversation in the strictest confidence.
           </p>
           <p class="mt-4 text-muted leading-relaxed">
-            You can also call us for an immediate discussion without obligation or charge on
+            Prefer to speak now? Call
             <a class="font-semibold text-ink underline underline-offset-4" href="tel:07912222905">0791 2222 905</a>.
           </p>
         </div>
 
         <div class="mt-10 grid md:grid-cols-3 gap-4 reveal">
-          <div class="sq border bg-white p-7 info-card">
+          <div class="sq border border-line bg-white p-7">
             <div class="flex items-start gap-4">
-              <span class="inline-flex items-center justify-center w-11 h-11 sq bg-ink text-white shrink-0">
+              <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-ink text-white shrink-0">
                 <i data-feather="map-pin" class="w-5 h-5"></i>
               </span>
               <div class="text-sm leading-relaxed">
@@ -387,9 +308,9 @@
             </div>
           </div>
 
-          <div class="sq border bg-white p-7 info-card">
+          <div class="sq border border-line bg-white p-7">
             <div class="flex items-start gap-4">
-              <span class="inline-flex items-center justify-center w-11 h-11 sq bg-ink text-white shrink-0">
+              <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-ink text-white shrink-0">
                 <i data-feather="phone" class="w-5 h-5"></i>
               </span>
               <div class="text-sm">
@@ -397,16 +318,14 @@
                 <a href="tel:07912222905" class="mt-3 inline-block text-[18px] font-semibold hover:underline underline-offset-4">
                   0791 2222 905
                 </a>
-                <p class="mt-3 text-muted leading-relaxed">
-                  Call for a quick, no-obligation chat.
-                </p>
+                <p class="mt-3 text-muted leading-relaxed">Call for a quick, no-obligation chat.</p>
               </div>
             </div>
           </div>
 
-          <div class="sq border bg-white p-7 info-card">
+          <div class="sq border border-line bg-white p-7">
             <div class="flex items-start gap-4">
-              <span class="inline-flex items-center justify-center w-11 h-11 sq bg-ink text-white shrink-0">
+              <span class="inline-flex items-center justify-center w-11 h-11 rounded-full bg-ink text-white shrink-0">
                 <i data-feather="mail" class="w-5 h-5"></i>
               </span>
               <div class="text-sm">
@@ -414,9 +333,7 @@
                 <a href="mailto:rob@t1assetmanagement.co.uk" class="mt-3 inline-block font-semibold hover:underline underline-offset-4 break-all">
                   rob@t1assetmanagement.co.uk
                 </a>
-                <p class="mt-3 text-muted leading-relaxed">
-                  Send a brief outline and we’ll respond promptly.
-                </p>
+                <p class="mt-3 text-muted leading-relaxed">Send a brief outline and we’ll respond promptly.</p>
               </div>
             </div>
           </div>
@@ -430,9 +347,7 @@
       <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
         <div class="max-w-3xl reveal">
           <h2 class="text-3xl md:text-4xl font-semibold tracking-tight">How can we help?</h2>
-          <p class="mt-5 text-muted leading-relaxed">
-            Share a few details and we’ll respond promptly.
-          </p>
+          <p class="mt-5 text-muted leading-relaxed">Share a few details and we’ll respond promptly.</p>
         </div>
 
         <div class="mt-8 sq border border-line bg-white p-8 sm:p-10 shadow-soft reveal">
@@ -458,6 +373,13 @@
                 <input type="email" name="email" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="you@company.com" autocomplete="email" />
               </div>
               <div>
+                <label class="block text-sm font-medium">Phone</label>
+                <input type="tel" name="phone" class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="07..." autocomplete="tel" />
+              </div>
+            </div>
+
+            <div class="grid sm:grid-cols-2 gap-4">
+              <div>
                 <label class="block text-sm font-medium">Type of property</label>
                 <select name="property_type" class="mt-2 w-full sq px-4 py-3 text-sm f-in">
                   <option value="">Select an option</option>
@@ -469,11 +391,10 @@
                   <option>Other</option>
                 </select>
               </div>
-            </div>
-
-            <div>
-              <label class="block text-sm font-medium">Postcode of premises</label>
-              <input type="text" name="postcode" class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="e.g. LS1 2AB" autocomplete="postal-code" />
+              <div>
+                <label class="block text-sm font-medium">Postcode of premises</label>
+                <input type="text" name="postcode" class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="e.g. LS1 2AB" autocomplete="postal-code" />
+              </div>
             </div>
 
             <div>
@@ -500,7 +421,7 @@
       </div>
     </section>
 
-    <!-- ✅ FOOTER (matches homepage layout + credit) -->
+    <!-- FOOTER -->
     <footer class="bg-black text-white">
       <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24 py-14">
         <div class="grid md:grid-cols-4 gap-10 reveal">
@@ -520,8 +441,8 @@
           <div>
             <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Services</p>
             <ul class="mt-4 space-y-2 text-sm">
-              <li><a class="text-white/80 hover:text-white transition" href="/t1asset/professional-services.html">Professional Services</a></li>
-              <li><a class="text-white/80 hover:text-white transition" href="/t1asset/contact.html">Contact</a></li>
+              <li><a class="text-white/80 hover:text-white transition" href="/professional-services.html">Professional Services</a></li>
+              <li><a class="text-white/80 hover:text-white transition" href="/contact.html#form">Contact</a></li>
               <li><button data-open-callback class="text-left text-white/80 hover:text-white transition">Request a call back</button></li>
             </ul>
           </div>
@@ -536,8 +457,8 @@
           <div>
             <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Legal</p>
             <ul class="mt-4 space-y-2 text-sm">
-              <li><a href="/t1asset/privacy-policy" class="text-white/80 hover:text-white transition">Privacy Policy</a></li>
-              <li><a href="/t1asset/terms-of-service" class="text-white/80 hover:text-white transition">Terms of use</a></li>
+              <li><a href="/privacy-policy.html" class="text-white/80 hover:text-white transition">Privacy Policy</a></li>
+              <li><a href="/terms-of-service.html" class="text-white/80 hover:text-white transition">Terms of use</a></li>
             </ul>
           </div>
         </div>
@@ -643,7 +564,7 @@
     document.addEventListener("keydown", (e) => { if (e.key === "Escape" && isOpen()) closeMenu(); });
     window.addEventListener("resize", () => { if (window.innerWidth >= 768 && isOpen()) closeMenu(); });
 
-    // Callback modal open/close
+    // Callback modal
     const modal = document.getElementById("callbackModal");
     function openCallback() {
       closeMenu();
@@ -674,12 +595,10 @@
         menu.classList.add("open");
         btn.setAttribute("aria-expanded", "true");
       }
-
       function closeDD() {
         menu.classList.remove("open");
         btn.setAttribute("aria-expanded", "false");
       }
-
       function scheduleClose() {
         if (closeT) clearTimeout(closeT);
         closeT = setTimeout(closeDD, 220);
@@ -692,8 +611,7 @@
 
       btn.addEventListener("click", (e) => {
         e.preventDefault();
-        const open = menu.classList.contains("open");
-        open ? closeDD() : openDD();
+        menu.classList.contains("open") ? closeDD() : openDD();
       });
 
       document.addEventListener("click", (e) => {
@@ -717,7 +635,7 @@
     }, { threshold: 0.12, rootMargin: "0px 0px -10% 0px" });
     document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
-    // Formspree AJAX submit (Contact)
+    // ✅ Formspree AJAX submit (Contact)
     (function () {
       const form = document.getElementById("contactForm");
       const btn = document.getElementById("contactSubmit");
@@ -756,7 +674,7 @@
       });
     })();
 
-    // Formspree AJAX submit (Callback modal)
+    // ✅ Formspree AJAX submit (Callback modal)
     (function () {
       const form = document.getElementById("callbackForm");
       const btn = document.getElementById("callbackSubmit");
