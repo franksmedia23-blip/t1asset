@@ -9,6 +9,14 @@
   <meta name="robots" content="index,follow" />
   <link rel="canonical" href="/t1asset/privacy-policy" />
 
+  <!-- ✅ Favicons (GitHub Pages project path: /t1asset/) -->
+  <link rel="icon" href="/t1asset/favicon-files/favicon.ico" sizes="any">
+  <link rel="icon" type="image/png" sizes="32x32" href="/t1asset/favicon-files/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/t1asset/favicon-files/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="/t1asset/favicon-files/apple-touch-icon.png">
+  <link rel="manifest" href="/t1asset/favicon-files/site.webmanifest">
+  <meta name="theme-color" content="#0B1220">
+
   <!-- Font -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -36,6 +44,7 @@
     }
     .reveal.is-visible{ opacity:1; transform:translateY(0); }
 
+    /* Mobile menu overlay */
     .menu-backdrop{
       position: fixed; inset: 0;
       background: rgba(0,0,0,.35);
@@ -64,12 +73,53 @@
     }
     .no-scroll { overflow: hidden; }
 
-    /* Simple “reading” typography */
+    /* Reading typography */
     .prose h2 { letter-spacing: -0.02em; }
     .prose a { text-decoration: underline; text-underline-offset: 4px; }
 
-    /* Light divider */
     .hairline{ height:1px; background: rgba(2,6,23,.08); }
+
+    /* ✅ Desktop dropdown (global) */
+    .nav-dd{ position: relative; }
+    .nav-dd-panel{
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      min-width: 260px;
+      background: #fff;
+      border: 1px solid rgba(2,6,23,.10);
+      box-shadow: 0 10px 24px rgba(2, 6, 23, 0.08);
+      z-index: 80;
+      opacity: 0;
+      transform: translateX(-50%) translateY(-6px);
+      pointer-events: none;
+      transition: opacity 140ms ease, transform 140ms ease;
+    }
+    .nav-dd-panel.open{
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+      pointer-events: auto;
+    }
+    .nav-dd::after{
+      content:"";
+      position:absolute;
+      left:-12px; right:-12px;
+      top:100%;
+      height:18px;
+    }
+
+    /* Inputs (for callback modal) */
+    .f-in{
+      transition: box-shadow 200ms ease, border-color 200ms ease, background-color 200ms ease;
+      border: 1px solid rgba(2,6,23,.12);
+      background: #fff;
+    }
+    .f-in:focus{
+      border-color: rgba(2,6,23,.55);
+      box-shadow: 0 0 0 4px rgba(2,6,23,.08);
+      outline: none;
+    }
   </style>
 
   <script>
@@ -94,51 +144,47 @@
 
 <body class="bg-white text-ink antialiased">
 
-  <!-- NAV -->
+  <!-- ✅ NAV (global) -->
   <header class="sticky top-0 z-50 bg-white/95 backdrop-blur border-b border-black/5">
     <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
       <div class="h-[72px] flex items-center justify-between">
-        <a href="/t1asset/index.html" class="flex items-center">
+        <a href="/t1asset/index.html" class="flex items-center" aria-label="T1 Asset Management home">
           <img
             src="https://image2url.com/r2/default/images/1769712235293-23883a5d-b00b-4d78-a5ae-45edd6e11829.png"
             alt="T1 Asset Management"
             class="h-10 w-auto"
             loading="eager"
+            decoding="async"
           />
         </a>
 
-        <nav class="hidden md:flex items-center gap-10 text-[13px] tracking-wide">
+        <nav class="hidden md:flex items-center gap-10 text-[13px] tracking-wide" aria-label="Primary navigation">
           <a href="/t1asset/index.html" class="text-ink/80 hover:text-ink transition">Home</a>
 
-          <!-- Rent Reviews dropdown (desktop) -->
-          <div class="relative" data-dd>
+          <div class="nav-dd">
             <button
               type="button"
+              id="rentBtn"
               class="inline-flex items-center gap-2 text-ink/80 hover:text-ink transition"
               aria-haspopup="true"
               aria-expanded="false"
-              data-dd-btn
+              aria-controls="rentMenu"
             >
-              Rent Reviews
-              <i data-feather="chevron-down" class="w-4 h-4"></i>
+              Rent Reviews <i data-feather="chevron-down" class="w-4 h-4"></i>
             </button>
 
-            <div
-              class="absolute left-0 top-full mt-3 w-72 sq border border-line bg-white shadow-soft hidden"
-              role="menu"
-              data-dd-menu
-            >
-              <a href="/t1asset/rent-reviews-landlords" class="block px-4 py-3 text-sm hover:bg-gray-50" role="menuitem">
-                Rent Reviews for Landlords
-              </a>
+            <div id="rentMenu" class="nav-dd-panel sq" role="menu" aria-label="Rent Reviews submenu">
               <a href="/t1asset/rent-reviews-tenants" class="block px-4 py-3 text-sm hover:bg-gray-50" role="menuitem">
-                Rent Reviews for Tenants
+                Tenants
+              </a>
+              <a href="/t1asset/rent-reviews-landlords" class="block px-4 py-3 text-sm hover:bg-gray-50" role="menuitem">
+                Landlords
               </a>
             </div>
           </div>
 
           <a href="/t1asset/professional-services" class="text-ink/80 hover:text-ink transition">Other Services</a>
-          <a href="/t1asset/contact" class="text-ink/80 hover:text-ink transition">Contact</a>
+          <a href="/t1asset/contact#form" class="text-ink/80 hover:text-ink transition">Contact</a>
         </nav>
 
         <div class="flex items-center gap-3">
@@ -167,30 +213,15 @@
   <!-- Mobile menu overlay -->
   <div id="menuBackdrop" class="menu-backdrop md:hidden" aria-hidden="true"></div>
 
+  <!-- ✅ Mobile menu (global) -->
   <div id="menuDrawer" class="menu-drawer md:hidden" role="dialog" aria-modal="true" aria-label="Mobile menu">
     <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24 py-4">
-      <nav class="flex flex-col text-sm">
+      <nav class="flex flex-col text-sm" aria-label="Mobile navigation">
         <a href="/t1asset/index.html" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Home</a>
-
-        <!-- Rent Reviews dropdown (mobile) -->
-        <details class="px-2 py-2">
-          <summary class="cursor-pointer list-none py-2 hover:bg-gray-50 flex items-center justify-between">
-            <span>Rent Reviews</span>
-            <i data-feather="chevron-down" class="w-4 h-4"></i>
-          </summary>
-
-          <div class="mt-2 flex flex-col border-l border-line ml-2">
-            <a href="/t1asset/rent-reviews-landlords-leeds" class="px-4 py-2 hover:bg-gray-50" data-close-menu>
-              For Landlords
-            </a>
-            <a href="/t1asset/rent-reviews-tenants-leeds" class="px-4 py-2 hover:bg-gray-50" data-close-menu>
-              For Tenants
-            </a>
-          </div>
-        </details>
-
+        <a href="/t1asset/rent-reviews-tenants" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Rent Reviews — Tenants</a>
+        <a href="/t1asset/rent-reviews-landlords" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Rent Reviews — Landlords</a>
         <a href="/t1asset/professional-services" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Other Services</a>
-        <a href="/t1asset/contact" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Contact</a>
+        <a href="/t1asset/contact#form" class="px-2 py-3 hover:bg-gray-50" data-close-menu>Contact</a>
 
         <button
           type="button"
@@ -206,7 +237,7 @@
 
   <main>
 
-    <!-- HERO -->
+    <!-- HEADER -->
     <section class="py-16 md:py-20">
       <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24">
         <div class="max-w-3xl reveal">
@@ -322,7 +353,7 @@
 
               <div class="mt-5 space-y-4 text-sm">
                 <div class="flex items-start gap-3">
-                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-ink text-white shrink-0">
+                  <span class="inline-flex items-center justify-center w-10 h-10 sq bg-ink text-white shrink-0">
                     <i data-feather="map-pin" class="w-5 h-5"></i>
                   </span>
                   <div class="text-muted leading-relaxed">
@@ -335,7 +366,7 @@
                 </div>
 
                 <div class="flex items-start gap-3">
-                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-ink text-white shrink-0">
+                  <span class="inline-flex items-center justify-center w-10 h-10 sq bg-ink text-white shrink-0">
                     <i data-feather="phone" class="w-5 h-5"></i>
                   </span>
                   <div class="text-muted leading-relaxed">
@@ -347,7 +378,7 @@
                 </div>
 
                 <div class="flex items-start gap-3">
-                  <span class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-ink text-white shrink-0">
+                  <span class="inline-flex items-center justify-center w-10 h-10 sq bg-ink text-white shrink-0">
                     <i data-feather="mail" class="w-5 h-5"></i>
                   </span>
                   <div class="text-muted leading-relaxed">
@@ -363,9 +394,9 @@
                 <a href="/t1asset/contact#form" class="inline-flex items-center justify-center px-5 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
                   Send an enquiry <i data-feather="arrow-right" class="ml-2 w-4 h-4"></i>
                 </a>
-                <a href="/t1asset/contact" class="inline-flex items-center justify-center px-5 py-3 sq border border-line text-sm font-semibold hover:bg-white/60 transition">
-                  Contact page
-                </a>
+                <button type="button" data-open-callback class="inline-flex items-center justify-center px-5 py-3 sq border border-line text-sm font-semibold hover:bg-white/60 transition">
+                  Request a call back
+                </button>
               </div>
             </div>
           </aside>
@@ -373,7 +404,7 @@
       </div>
     </section>
 
-    <!-- FOOTER -->
+    <!-- ✅ FOOTER (global) -->
     <footer class="bg-black text-white">
       <div class="max-w-7xl mx-auto px-4 md:px-10 lg:px-24 py-14">
         <div class="grid md:grid-cols-4 gap-10 reveal">
@@ -385,16 +416,25 @@
               loading="lazy"
             />
             <p class="mt-4 text-sm text-white/70 leading-relaxed max-w-sm">
-              Independent commercial property advice across Leeds, Yorkshire and the UK.
+              Independent commercial property advice across Yorkshire and the UK.
             </p>
+          </div>
+
+          <div>
+            <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Services</p>
+            <ul class="mt-4 space-y-2 text-sm">
+              <li><a class="text-white/80 hover:text-white transition" href="/t1asset/professional-services">Professional Services</a></li>
+              <li><a class="text-white/80 hover:text-white transition" href="/t1asset/contact#form">Contact</a></li>
+              <li><button data-open-callback class="text-left text-white/80 hover:text-white transition">Request a call back</button></li>
+            </ul>
           </div>
 
           <div>
             <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Company</p>
             <ul class="mt-4 space-y-2 text-sm">
-              <li><a class="text-white/80 hover:text-white transition" href="/t1asset/professional-services">Professional Services</a></li>
-              <li><a class="text-white/80 hover:text-white transition" href="/t1asset/contact">Contact</a></li>
-              <li><a class="text-white/80 hover:text-white transition" href="/t1asset/privacy-policy">Privacy Policy</a></li>
+              <li><a class="text-white/80 hover:text-white transition" href="/t1asset/index.html#about">About</a></li>
+              <li><a class="text-white/80 hover:text-white transition" href="/t1asset/index.html#approach">Our Approach</a></li>
+              <li><a class="text-white/80 hover:text-white transition" href="/t1asset/contact#form">Contact</a></li>
             </ul>
           </div>
 
@@ -407,21 +447,14 @@
               <p>LS28 5QS</p>
             </div>
           </div>
-
-          <div>
-            <p class="text-[11px] uppercase tracking-[0.28em] text-white/60">Legal</p>
-            <ul class="mt-4 space-y-2 text-sm">
-              <li><a href="/t1asset/privacy-policy" class="text-white/80 hover:text-white transition">Privacy Policy</a></li>
-              <li><a href="/t1asset/terms" class="text-white/80 hover:text-white transition">Terms of use</a></li>
-            </ul>
-          </div>
         </div>
 
         <div class="mt-12 pt-8 border-t border-white/15 flex flex-col md:flex-row gap-4 items-start md:items-center justify-between reveal">
           <p class="text-sm text-white/60">© <span id="year"></span> T1 Asset Management. All rights reserved.</p>
           <div class="flex gap-6 text-sm">
-            <a href="/t1asset/privacy-policy" class="text-white/60 hover:text-white transition">Privacy Policy</a>
-            <a href="/t1asset/terms" class="text-white/60 hover:text-white transition">Terms of use</a>
+            <a href="/t1asset/privacy-policy" class="text-white/60 hover:text-white transition">Privacy</a>
+            <a href="/t1asset/terms" class="text-white/60 hover:text-white transition">Terms</a>
+            <a href="/t1asset/cookies" class="text-white/60 hover:text-white transition">Cookies</a>
           </div>
         </div>
       </div>
@@ -429,7 +462,7 @@
 
   </main>
 
-  <!-- CALLBACK MODAL -->
+  <!-- ✅ CALLBACK MODAL (Formspree + AJAX) -->
   <div id="callbackModal" class="fixed inset-0 z-[80] hidden">
     <div class="absolute inset-0 bg-black/60"></div>
 
@@ -450,24 +483,30 @@
             Leave your name and number and we’ll call you to discuss how we can help.
           </p>
 
-          <form class="mt-5 space-y-4" onsubmit="event.preventDefault(); closeCallback(); alert('Thanks — we will call you back shortly.');">
+          <form id="callbackForm" action="https://formspree.io/f/xgoleoed" method="POST" class="mt-5 space-y-4">
+            <input type="hidden" name="_subject" value="Callback request — T1 Asset Management" />
+            <input type="hidden" name="form_type" value="callback_request" />
+            <input type="text" name="_gotcha" class="hidden" tabindex="-1" autocomplete="off" />
+
             <div>
               <label class="block text-sm font-medium">Name</label>
-              <input type="text" required class="mt-2 w-full sq border border-line px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-ink/10 focus:border-ink" placeholder="Your name" />
+              <input type="text" name="name" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="Your name" />
             </div>
 
             <div>
               <label class="block text-sm font-medium">Phone number</label>
-              <input type="tel" required class="mt-2 w-full sq border border-line px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-ink/10 focus:border-ink" placeholder="07..." />
+              <input type="tel" name="phone" required class="mt-2 w-full sq px-4 py-3 text-sm f-in" placeholder="07..." />
             </div>
 
-            <button type="submit" class="w-full inline-flex items-center justify-center px-6 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
+            <button type="submit" id="callbackSubmit" class="w-full inline-flex items-center justify-center px-6 py-3 sq bg-ink text-white text-sm font-semibold hover:bg-black transition">
               Call me back <i data-feather="phone-call" class="ml-2 w-4 h-4"></i>
             </button>
 
             <button type="button" data-close-callback class="w-full inline-flex items-center justify-center px-6 py-3 sq border border-line text-sm font-semibold hover:bg-gray-50 transition">
               Close
             </button>
+
+            <p id="callbackStatus" class="text-xs text-muted leading-relaxed hidden"></p>
           </form>
         </div>
       </div>
@@ -529,6 +568,51 @@
     document.querySelectorAll("[data-close-callback]").forEach(btn => btn.addEventListener("click", closeCallback));
     modal.addEventListener("click", (e) => { if (e.target === modal.firstElementChild) closeCallback(); });
 
+    // ✅ Rent Reviews dropdown (desktop)
+    (function () {
+      const btn = document.getElementById("rentBtn");
+      const menu = document.getElementById("rentMenu");
+      if (!btn || !menu) return;
+
+      let closeT = null;
+
+      function openDD() {
+        if (closeT) { clearTimeout(closeT); closeT = null; }
+        menu.classList.add("open");
+        btn.setAttribute("aria-expanded", "true");
+      }
+
+      function closeDD() {
+        menu.classList.remove("open");
+        btn.setAttribute("aria-expanded", "false");
+      }
+
+      function scheduleClose() {
+        if (closeT) clearTimeout(closeT);
+        closeT = setTimeout(closeDD, 220);
+      }
+
+      btn.addEventListener("mouseenter", openDD);
+      menu.addEventListener("mouseenter", openDD);
+      btn.addEventListener("mouseleave", scheduleClose);
+      menu.addEventListener("mouseleave", scheduleClose);
+
+      btn.addEventListener("click", (e) => {
+        e.preventDefault();
+        const isOpen = menu.classList.contains("open");
+        if (isOpen) closeDD(); else openDD();
+      });
+
+      document.addEventListener("click", (e) => {
+        const within = btn.contains(e.target) || menu.contains(e.target);
+        if (!within) closeDD();
+      });
+
+      document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") closeDD();
+      });
+    })();
+
     // Fade-in on scroll
     const io = new IntersectionObserver((entries) => {
       entries.forEach((entry) => {
@@ -541,36 +625,45 @@
 
     document.querySelectorAll(".reveal").forEach((el) => io.observe(el));
 
-    // Rent Reviews dropdown (desktop)
-    const dd = document.querySelector('[data-dd]');
-    const ddBtn = document.querySelector('[data-dd-btn]');
-    const ddMenu = document.querySelector('[data-dd-menu]');
+    // ✅ Formspree AJAX submit (Callback modal)
+    (function () {
+      const form = document.getElementById("callbackForm");
+      const btn = document.getElementById("callbackSubmit");
+      const status = document.getElementById("callbackStatus");
+      if (!form) return;
 
-    function closeDD(){
-      if(!ddMenu) return;
-      ddMenu.classList.add('hidden');
-      ddBtn?.setAttribute('aria-expanded','false');
-    }
-    function openDD(){
-      if(!ddMenu) return;
-      ddMenu.classList.remove('hidden');
-      ddBtn?.setAttribute('aria-expanded','true');
-      feather.replace();
-    }
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-    ddBtn?.addEventListener('click', (e) => {
-      e.stopPropagation();
-      ddMenu.classList.contains('hidden') ? openDD() : closeDD();
-    });
+        status.classList.remove("hidden");
+        status.textContent = "Sending…";
+        btn.disabled = true;
+        btn.classList.add("opacity-60");
 
-    document.addEventListener('click', (e) => {
-      if(!dd) return;
-      if(!dd.contains(e.target)) closeDD();
-    });
+        try {
+          const formData = new FormData(form);
+          const res = await fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" }
+          });
 
-    document.addEventListener('keydown', (e) => {
-      if(e.key === 'Escape') closeDD();
-    });
+          if (res.ok) {
+            form.reset();
+            status.textContent = "Thanks — we will call you back shortly.";
+            setTimeout(() => { closeCallback(); }, 900);
+          } else {
+            status.textContent = "Sorry — something went wrong. Please try again.";
+          }
+        } catch (err) {
+          status.textContent = "Sorry — something went wrong. Please try again.";
+        } finally {
+          btn.disabled = false;
+          btn.classList.remove("opacity-60");
+          if (window.feather) window.feather.replace();
+        }
+      });
+    })();
   </script>
 </body>
 </html>
